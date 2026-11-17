@@ -444,7 +444,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 #oemCta{margin-top:12px;background:linear-gradient(180deg,#2A4A6C,#1B3350)}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0;transition:opacity 1.2s ease}.hero-video.on{opacity:1}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,35,58,.30) 0%,rgba(16,35,58,.70) 45%,rgba(16,35,58,.95) 100%)}
-.hero-amb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0% 50%;z-index:-2;opacity:.42;mix-blend-mode:screen;pointer-events:none;animation:ampan 14s ease-in-out infinite alternate}@keyframes ampan{to{object-position:100% 50%}}
+.hero-bv{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0E2440;z-index:-2;opacity:0;transition:opacity 1.2s ease;pointer-events:none}.hero-bv.on{opacity:1}
 .hero-slides{position:absolute;inset:0;z-index:-2;pointer-events:none}
 .hero-slides i{position:absolute;inset:0;background-size:cover;background-position:var(--px,60%) center;opacity:0;transition:opacity 1.2s ease;transform:scale(1.04)}
 .hero-slides i.on{opacity:1;transform:scale(1);transition:opacity 1.2s ease,transform 6s ease-out}
@@ -508,6 +508,38 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .quick a.wide b{display:block;color:#fff;font-size:15.5px}
 .regscan{display:flex;align-items:center;gap:10px;justify-content:center;background:var(--ice);border:1.5px dashed #9fb2c4;border-radius:14px;padding:12px;font-weight:650;text-decoration:none;font-size:14.5px}
 .regscan svg{width:20px;height:20px;color:var(--rbc)}
+/* quiz + centrifuge */
+.quick a.half{flex-direction:row;align-items:center;gap:10px;padding:14px}
+.quick a.half svg{flex:none}
+.quick a.half b{display:block;color:var(--ink);font-size:14.5px;line-height:1.25}
+.qz{margin:14px 16px 0;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:18px}
+.qz .dots{display:flex;gap:6px;margin-bottom:14px}.qz .dots i{flex:1;height:6px;border-radius:3px;background:var(--line)}.qz .dots i.ok{background:#1FAF54}.qz .dots i.no{background:var(--rbc)}.qz .dots i.cur{background:var(--plasma)}
+.qz .qn{font-size:13px;font-weight:700;color:var(--steel)}
+.qz h3{font-size:19px;line-height:1.3;margin:4px 0 14px}
+.qz .opts{display:flex;flex-direction:column;gap:10px}
+.qz .opts button{text-align:left;border:2px solid var(--line);border-radius:14px;padding:13px 14px;font-weight:600;font-size:15px;background:var(--ice);display:flex;gap:10px;align-items:center}
+.qz .opts button b{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--line);font-size:13px}
+.qz .opts button.ok{border-color:#1FAF54;background:#E3F6EA}.qz .opts button.ok b{background:#1FAF54;color:#fff;border-color:#1FAF54}
+.qz .opts button.no{border-color:var(--rbc);background:#F8E1E3}.qz .opts button.no b{background:var(--rbc);color:#fff;border-color:var(--rbc)}
+.qz .opts button:disabled{cursor:default;color:var(--ink)}
+.qz .exp{margin-top:12px;background:var(--plasma-soft);border-radius:12px;padding:11px 13px;font-size:14px}
+.qz .exp strong{display:block;margin-bottom:2px}
+.qz .btn{margin-top:14px}
+.qz .res{text-align:center}
+.qz .score{font-size:64px;font-weight:800;line-height:1;margin:6px 0;color:var(--ink)}
+.qz .score small{font-size:28px;color:var(--steel)}
+.qz .badge{display:inline-block;background:linear-gradient(180deg,#F7D27A,#E9B44C);border-radius:999px;padding:6px 16px;font-weight:800;margin:4px 0 10px}
+.qz .code{margin:12px auto 0;border:2px dashed var(--plasma);border-radius:14px;padding:12px;max-width:280px}
+.qz .code b{display:block;font-size:26px;letter-spacing:.08em}
+.qz .code span{font-size:12.5px;color:var(--steel)}
+.qz .duo2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.qz .duo2 .btn{font-size:14px;padding:12px 8px}
+.cf{margin:14px 16px 0;background:radial-gradient(circle at 50% 22%,#1d3c5e,#0b1a2e 70%);border-radius:22px;padding:14px 14px 18px;color:#fff;text-align:center}
+.cf canvas{width:100%;max-width:340px;aspect-ratio:340/470;display:block;margin:0 auto;touch-action:none}
+.cf .rpm{font-size:13px;color:#9fb6cc;margin-top:2px}.cf .rpm b{font-size:22px;color:#fff;font-variant-numeric:tabular-nums}
+.cf .hold{margin-top:12px;user-select:none;-webkit-user-select:none;touch-action:none;-webkit-touch-callout:none}
+.cf .hold.on{transform:translateY(3px)}
+.cf .st{font-size:14.5px;margin-top:10px;min-height:42px;color:#dbe6f0}
+.cf .cfacts{display:grid;gap:10px;margin-top:6px}
 </style>
 </head>
 <body>
@@ -525,7 +557,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
   <main>
     <!-- HOME -->
     <section class="view" id="v-home">
-      <div class="hero"><video class="hero-amb" muted loop playsinline autoplay preload="auto" poster="media/plasma_poster.jpg" aria-hidden="true"><source src="media/plasma.mp4" type="video/mp4"></video><video class="hero-video" muted loop playsinline preload="metadata" poster="media/hero_poster.jpg" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"></video><div class="hero-slides" aria-hidden="true"><i style="background-image:url(media/gc1.jpg);--px:52%"></i><i style="background-image:url(media/gc2.jpg);--px:68%"></i><i style="background-image:url(media/gc3.jpg);--px:62%"></i><i style="background-image:url(media/gc4.jpg);--px:58%"></i><i class="clean" style="background-image:url(media/highcell.jpg)"></i></div>
+      <div class="hero"><video class="hero-bv clean" id="hbv1" muted playsinline preload="metadata" poster="media/plasma_poster.jpg" aria-hidden="true"><source src="media/plasma.mp4" type="video/mp4"></video><video class="hero-bv clean" id="hbv2" muted playsinline preload="none" poster="media/plasma2_poster.jpg" aria-hidden="true"><source src="media/plasma2.mp4" type="video/mp4"></video><video class="hero-video" muted loop playsinline preload="metadata" poster="media/hero_poster.jpg" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"></video><div class="hero-slides" aria-hidden="true"><i style="background-image:url(media/gc1.jpg);--px:52%"></i><i style="background-image:url(media/gc2.jpg);--px:68%"></i><i style="background-image:url(media/gc3.jpg);--px:62%"></i><i style="background-image:url(media/gc4.jpg);--px:58%"></i><i class="clean" style="background-image:url(media/highcell.jpg)"></i></div>
         <div>
           <h1 data-i="heroT"></h1>
           <p data-i="heroP"></p>
@@ -546,7 +578,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
         <div class="date"><b>16–19</b><span data-i="nov"></span></div>
         <div><span class="live" data-i="now"></span><h3>MEDICA 2026 · Düsseldorf</h3><p data-i="stand"></p></div>
       </a>
-      <div class="quick" style="margin:12px 16px 0"><a href="#scan" class="wide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M6 9.5h5M6 12.5h7M6 15.5h4"/><circle cx="17" cy="11" r="2"/><path d="M14.5 16a2.7 2.7 0 0 1 5 0"/></svg><div><b data-i="qScT"></b><span data-i="qScP"></span></div></a></div>
+      <div class="quick" style="margin:12px 16px 0"><a href="#scan" class="wide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M6 9.5h5M6 12.5h7M6 15.5h4"/><circle cx="17" cy="11" r="2"/><path d="M14.5 16a2.7 2.7 0 0 1 5 0"/></svg><div><b data-i="qScT"></b><span data-i="qScP"></span></div></a><a href="#quiz" class="half"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17h.01"/></svg><b data-i="qzTile"></b></a><a href="#spin" class="half"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg><b data-i="cfTile"></b></a></div>
 
       <div class="slider" aria-roledescription="carousel">
         <div class="slides" id="slides"></div>
@@ -778,6 +810,25 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
         <form id="scTF"><input name="code" type="password" inputmode="text" autocomplete="off" aria-label="code"><button class="btn" type="submit" data-i="scTeamGo"></button></form>
         <p class="note" id="scTErr" role="alert"></p>
       </details>
+    </section>
+
+
+    <!-- QUIZ -->
+    <section class="view" id="v-quiz">
+      <div class="sec"><h2 data-i="qzT"></h2><p class="lead" data-i="qzP"></p></div>
+      <div class="qz" id="qz" aria-live="polite"></div>
+    </section>
+
+    <!-- CENTRIFUGE -->
+    <section class="view" id="v-spin">
+      <div class="sec"><h2 data-i="cfT"></h2><p class="lead" data-i="cfP"></p></div>
+      <div class="cf">
+        <canvas id="cfC" width="680" height="940" role="img" aria-label="centrifuge"></canvas>
+        <div class="rpm"><b id="cfRpm">0</b> rpm</div>
+        <button class="btn gold hold" type="button" id="cfHold" data-i="cfHold"></button>
+        <p class="st" id="cfSt" aria-live="polite"></p>
+        <div class="cfacts" id="cfActs" hidden><button class="btn" type="button" id="cfHc" data-i="cfHc"></button><button class="btn" type="button" id="cfQz" data-i="cfQz"></button><button class="btn" type="button" id="cfRe" data-i="cfRe" style="background:none;box-shadow:none;border:1.5px solid #4d6a88"></button></div>
+      </div>
     </section>
 
     <!-- CONTACT -->
@@ -1163,13 +1214,16 @@ document.getElementById("stNext").addEventListener("click",()=>goSt(ofI+1));
 (()=>{let x0=null;const el=document.getElementById("oemSteps");el.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});el.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)goSt(ofI+(dx<0?1:-1));x0=null});})();
 document.getElementById("oemCta").addEventListener("click",e=>{e.preventDefault();document.getElementById("f").scrollIntoView({behavior:"smooth"})});
 
-(()=>{const A=document.querySelector(".hero-amb");if(A){const go=()=>{const p=A.play();if(p&&p.catch)p.catch(()=>{})};go();document.addEventListener("visibilitychange",()=>{if(!document.hidden)go()});document.addEventListener("touchstart",go,{once:true,passive:true})}})();
-(()=>{const V=document.querySelector(".hero-video"),L=[...document.querySelectorAll(".hero-slides i")];
-  const hc=L.find(x=>x.classList.contains("clean"));const rest=L.filter(x=>x!==hc);const order=hc?[hc,...rest]:rest;const seq=[];order.forEach(el=>{seq.push(V);seq.push(el)});let k=0,cur=null,vOK=true;
-  const hideCur=()=>{if(!cur)return;if(cur===V){V.classList.remove("on");setTimeout(()=>V.pause(),1200)}else{cur.classList.remove("on");document.querySelector(".hero").classList.remove("clean")}cur=null};
-  const H=document.querySelector(".hero");const showNext=()=>{let el=seq[k%seq.length];k++;if(el===V&&!vOK){el=seq[k%seq.length];k++}cur=el;if(el===V){try{V.currentTime=0;const pr=V.play();if(pr&&pr.catch)pr.catch(()=>{vOK=false;V.classList.remove("on")})}catch(e){vOK=false}if(vOK)V.classList.add("on")}else{el.classList.add("on");if(el.classList.contains("clean"))H.classList.add("clean")}};
-  const loop=()=>{showNext();const dur=cur===V?6500:(cur.classList.contains('clean')?6000:4500);setTimeout(()=>{hideCur();setTimeout(loop,4500)},dur)};
-  if(V){V.pause();V.classList.remove("on")}setTimeout(loop,1500);})();
+(()=>{const V=document.querySelector(".hero-video"),P1=document.getElementById("hbv1"),P2=document.getElementById("hbv2"),L=[...document.querySelectorAll(".hero-slides i")],H=document.querySelector(".hero");
+  const hc=L.find(x=>x.classList.contains("clean")),g=L.filter(x=>x!==hc);
+  const seq=[P1,V,hc,P2,V,g[0],g[1],V,g[2],g[3]].filter(Boolean);const bad=new Set();let k=0,cur=null;
+  const isV=el=>el.tagName==="VIDEO";
+  const hideCur=()=>{if(!cur)return;const el=cur;el.classList.remove("on");H.classList.remove("clean");if(isV(el))setTimeout(()=>el.pause(),1200);cur=null};
+  const showNext=()=>{let el,n=0;do{el=seq[k%seq.length];k++;n++}while(bad.has(el)&&n<=seq.length);cur=el;
+    if(isV(el)){try{if(el.preload==="none")el.preload="auto";el.currentTime=0;const pr=el.play();if(pr&&pr.catch)pr.catch(()=>{bad.add(el);el.classList.remove("on");H.classList.remove("clean")})}catch(e){bad.add(el)}}
+    if(!bad.has(el)){el.classList.add("on");if(el.classList.contains("clean"))H.classList.add("clean")}};
+  const loop=()=>{showNext();const dur=cur===V?6500:(cur===P1||cur===P2)?6000:cur===hc?6000:4500;setTimeout(()=>{hideCur();setTimeout(loop,4500)},dur)};
+  [V,P1,P2].forEach(v=>{if(v){v.pause();v.classList.remove("on")}});setTimeout(loop,1500);})();
 let spSel=0,pkSel=0;
 function updStarter(){const d=T[lang];
   document.querySelectorAll("#pkt button").forEach(b=>b.setAttribute("aria-checked",+b.dataset.k===pkSel));
@@ -1337,6 +1391,107 @@ document.getElementById("scTF").addEventListener("submit",e=>{e.preventDefault()
 document.getElementById("scTeamOff").addEventListener("click",()=>{try{localStorage.removeItem(SC_TEAM)}catch(_){}renderScan()});
 addEventListener("hashchange",()=>{if(location.hash==="#scan")scLoad().catch(()=>{})});
 
+const QZX={tr:{qzTile:"Bilgi yarışması",cfTile:"Santrifüj simülatörü",qzT:"PRP bilgi yarışması",qzP:"5 soru, 1 dakika. Sonucunu STR standında göster, sürpriz hediyeni al.",qzStart:"Yarışmaya başla",qzQ:"Soru",qzOk:"Doğru!",qzNo:"Yanlış",qzNext:"Sonraki soru",qzFin:"Sonucu gör",qzR:[["Güzel başlangıç!","Standımıza gelin, ekibimiz anlatsın."],["Çok iyi!","Rejeneratif tıpta sağlam bir temeliniz var."],["Rejeneratif tıp uzmanı!","Tam puan — tebrikler!"]],qzCode:"Hediye kodunuz",qzCodeP:"Bu ekranı Salon 1 · Stant F38'de gösterin",qzReg:"Hediyemi ayırt (kayıt ol)",qzShare:"Paylaş",qzAgain:"Tekrar oyna",qzSpin:"Santrifüjü dene",qzShareT:"STR PRP bilgi yarışmasında {s}/5 yaptım! Sen de dene:",qzCtx:"Bilgi yarışması",
+qs:[["PRP neyin kısaltmasıdır?",["Platelet-Rich Plasma (trombositten zengin plazma)","Plasma-Rich Protein","Platelet Regeneration Process","Protein-Rich Plasma"],"PRP, kişinin kendi kanından santrifüjle elde edilen, trombositten zengin plazmadır."],
+["Santrifüjden sonra tüpün en altında hangi katman bulunur?",["Eritrositler (kırmızı kan hücreleri)","Plazma","Buffy coat","Fibrin"],"En yoğun hücreler olan eritrositler dibe çöker; en üstte plazma, aradaki ince beyaz tabaka buffy coat'tur."],
+["Buffy coat ağırlıklı olarak neleri içerir?",["Lökositler ve trombositler","Eritrositler","Yalnızca su ve tuzlar","Pıhtılaşmış fibrin"],"Plazma ile eritrositler arasındaki ince beyaz katmanda lökositler ve trombositler yoğunlaşır."],
+["PRF'yi PRP'den ayıran temel özellik nedir?",["Antikoagülan kullanılmadan hazırlanır, fibrin ağı oluşturur","Eritrosit oranı daha yüksektir","Sentetik bir üründür","Santrifüj gerektirmez"],"PRF (Platelet-Rich Fibrin) antikoagülansız tüpte hazırlanır; doğal pıhtılaşmayla trombositleri tutan bir fibrin ağı oluşur."],
+["STR'nin üretim tesisi hangi şehirde?",["Çorum","Ankara","İstanbul","İzmir"],"STR, Çorum'daki kendi fabrikasında, temiz oda ortamında, MDR CE uyumlu üretim yapar."]],
+cfT:"Santrifüj simülatörü",cfP:"Düğmeyi basılı tutun, rotor dönsün; kanın katmanlara ayrılmasını izleyin.",cfHold:"Basılı tut, çevir",cfS0:"Tam kan: hücreler ve plazma karışık.",cfS1:"Ayrışıyor… eritrositler dibe çöküyor.",cfS2:"Neredeyse tamam — bırakmayın!",cfS3:"Ayrışma tamam! Üstte plazma, ortada buffy coat, altta eritrositler.",cfSlow:"Rotor yavaşlıyor — devam etmek için basılı tutun.",cfL:["Plazma (PPP)","PRP","Buffy coat","Eritrositler"],cfHc:"HighCell PRP tüpünü incele",cfQz:"Bilgi yarışmasına geç",cfRe:"Tüpü karıştır, yeniden dene",cfNote:"Eğitim amaçlı basitleştirilmiş animasyondur."},
+en:{qzTile:"Knowledge quiz",cfTile:"Centrifuge simulator",qzT:"PRP knowledge quiz",qzP:"5 questions, 1 minute. Show your result at the STR stand for a surprise gift.",qzStart:"Start the quiz",qzQ:"Question",qzOk:"Correct!",qzNo:"Not quite",qzNext:"Next question",qzFin:"See result",qzR:[["Good start!","Visit our stand and our team will walk you through it."],["Very good!","You have a solid grasp of regenerative medicine."],["Regenerative medicine expert!","Full marks — congratulations!"]],qzCode:"Your gift code",qzCodeP:"Show this screen at Hall 1 · Stand F38",qzReg:"Reserve my gift (sign up)",qzShare:"Share",qzAgain:"Play again",qzSpin:"Try the centrifuge",qzShareT:"I scored {s}/5 in the STR PRP quiz! Try it:",qzCtx:"Knowledge quiz",
+qs:[["What does PRP stand for?",["Platelet-Rich Plasma","Plasma-Rich Protein","Platelet Regeneration Process","Protein-Rich Plasma"],"PRP is platelet-rich plasma obtained from a person's own blood by centrifugation."],
+["After centrifugation, which layer sits at the bottom of the tube?",["Red blood cells (erythrocytes)","Plasma","Buffy coat","Fibrin"],"The densest cells, erythrocytes, settle at the bottom; plasma is on top and the thin white band between them is the buffy coat."],
+["What does the buffy coat mainly contain?",["Leukocytes and platelets","Erythrocytes","Only water and salts","Clotted fibrin"],"Leukocytes and platelets concentrate in the thin white layer between plasma and red cells."],
+["What mainly sets PRF apart from PRP?",["It's prepared without anticoagulant and forms a fibrin network","It has more red cells","It's a synthetic product","It doesn't need a centrifuge"],"PRF (platelet-rich fibrin) is prepared in a tube without anticoagulant; natural clotting forms a fibrin network that holds the platelets."],
+["In which city is STR's manufacturing facility?",["Çorum","Ankara","Istanbul","Izmir"],"STR manufactures in its own factory in Çorum, Türkiye, in a cleanroom environment, MDR CE compliant."]],
+cfT:"Centrifuge simulator",cfP:"Press and hold the button to spin the rotor, and watch the blood separate into layers.",cfHold:"Press & hold to spin",cfS0:"Whole blood: cells and plasma are mixed.",cfS1:"Separating… red cells are settling.",cfS2:"Almost there — keep holding!",cfS3:"Separation complete! Plasma on top, buffy coat in the middle, red cells at the bottom.",cfSlow:"The rotor is slowing down — hold to continue.",cfL:["Plasma (PPP)","PRP","Buffy coat","Red cells"],cfHc:"Explore the HighCell PRP tube",cfQz:"Take the knowledge quiz",cfRe:"Mix the tube and try again",cfNote:"Simplified animation for educational purposes."},
+de:{qzTile:"Wissensquiz",cfTile:"Zentrifugen-Simulator",qzT:"PRP-Wissensquiz",qzP:"5 Fragen, 1 Minute. Zeigen Sie Ihr Ergebnis am STR-Stand und holen Sie sich ein Überraschungsgeschenk.",qzStart:"Quiz starten",qzQ:"Frage",qzOk:"Richtig!",qzNo:"Leider falsch",qzNext:"Nächste Frage",qzFin:"Ergebnis ansehen",qzR:[["Guter Anfang!","Besuchen Sie unseren Stand – unser Team erklärt es gern."],["Sehr gut!","Sie haben ein solides Wissen in regenerativer Medizin."],["Experte für regenerative Medizin!","Volle Punktzahl – Glückwunsch!"]],qzCode:"Ihr Geschenkcode",qzCodeP:"Zeigen Sie diesen Bildschirm in Halle 1 · Stand F38",qzReg:"Geschenk reservieren (registrieren)",qzShare:"Teilen",qzAgain:"Nochmal spielen",qzSpin:"Zentrifuge testen",qzShareT:"Ich habe {s}/5 im STR-PRP-Quiz! Probier es aus:",qzCtx:"Wissensquiz",
+qs:[["Wofür steht PRP?",["Platelet-Rich Plasma (plättchenreiches Plasma)","Plasma-Rich Protein","Platelet Regeneration Process","Protein-Rich Plasma"],"PRP ist plättchenreiches Plasma, das durch Zentrifugation aus dem eigenen Blut gewonnen wird."],
+["Welche Schicht liegt nach der Zentrifugation ganz unten im Röhrchen?",["Rote Blutkörperchen (Erythrozyten)","Plasma","Buffy Coat","Fibrin"],"Die dichtesten Zellen, die Erythrozyten, sinken nach unten; oben liegt das Plasma, dazwischen die dünne weiße Schicht – der Buffy Coat."],
+["Was enthält der Buffy Coat hauptsächlich?",["Leukozyten und Thrombozyten","Erythrozyten","Nur Wasser und Salze","Geronnenes Fibrin"],"In der dünnen weißen Schicht zwischen Plasma und Erythrozyten konzentrieren sich Leukozyten und Thrombozyten."],
+["Was unterscheidet PRF hauptsächlich von PRP?",["Ohne Antikoagulans hergestellt, bildet ein Fibrinnetz","Mehr rote Blutkörperchen","Ein synthetisches Produkt","Braucht keine Zentrifuge"],"PRF (Platelet-Rich Fibrin) wird im Röhrchen ohne Antikoagulans hergestellt; durch natürliche Gerinnung entsteht ein Fibrinnetz, das die Thrombozyten hält."],
+["In welcher Stadt liegt das Werk von STR?",["Çorum","Ankara","Istanbul","Izmir"],"STR produziert im eigenen Werk in Çorum (Türkei) unter Reinraumbedingungen, MDR-CE-konform."]],
+cfT:"Zentrifugen-Simulator",cfP:"Taste gedrückt halten, der Rotor dreht sich – sehen Sie zu, wie sich das Blut in Schichten trennt.",cfHold:"Gedrückt halten",cfS0:"Vollblut: Zellen und Plasma sind gemischt.",cfS1:"Trennung läuft… Erythrozyten sinken ab.",cfS2:"Fast geschafft – weiter halten!",cfS3:"Trennung abgeschlossen! Oben Plasma, in der Mitte Buffy Coat, unten Erythrozyten.",cfSlow:"Der Rotor wird langsamer – zum Fortfahren gedrückt halten.",cfL:["Plasma (PPP)","PRP","Buffy Coat","Erythrozyten"],cfHc:"HighCell-PRP-Röhrchen ansehen",cfQz:"Zum Wissensquiz",cfRe:"Röhrchen mischen, nochmal",cfNote:"Vereinfachte Animation zu Lehrzwecken."}};
+for(const k in QZX)Object.assign(T[k],QZX[k]);
+let qzI=-1,qzS=0,qzAns=[],qzOrd=[];
+function qzShuf(n){const a=[...Array(n).keys()];for(let i=n-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function renderQuiz(){const B=document.getElementById("qz");if(!B)return;const d=T[lang];
+  if(qzI<0){B.innerHTML=`<div class="res"><div class="score" style="font-size:54px">?</div><p class="note" style="margin-bottom:4px">5 × PRP · PRF · STR</p><button class="btn gold" type="button" data-q="start">${d.qzStart}</button></div>`;return}
+  if(qzI>=d.qs.length){const lv=qzS>=5?2:qzS>=3?1:0,R=d.qzR[lv];let code;try{code=localStorage.getItem("str-qz-code")}catch(e){}if(!code||+code.split("-")[1]<qzS){code="F38-"+qzS+"-"+Math.random().toString(36).slice(2,5).toUpperCase();try{localStorage.setItem("str-qz-code",code)}catch(e){}}
+    B.innerHTML=`<div class="res"><div class="dots">${qzAns.map(a=>`<i class="${a?"ok":"no"}"></i>`).join("")}</div><div class="score">${qzS}<small>/5</small></div><div class="badge">${R[0]}</div><p>${R[1]}</p><div class="code"><span>${d.qzCode}</span><b>${code}</b><span>${d.qzCodeP}</span></div><button class="btn gold" type="button" data-q="reg" data-code="${code}">${d.qzReg}</button><div class="duo2"><button class="btn" type="button" data-q="share">${d.qzShare}</button><button class="btn" type="button" data-q="again">${d.qzAgain}</button></div><button class="btn" type="button" data-q="spin">${d.qzSpin}</button></div>`;return}
+  const q=d.qs[qzI],ord=qzOrd[qzI];
+  B.innerHTML=`<div class="dots">${d.qs.map((_,i)=>`<i class="${i<qzI?(qzAns[i]?"ok":"no"):i===qzI?"cur":""}"></i>`).join("")}</div><div class="qn">${d.qzQ} ${qzI+1}/5</div><h3>${q[0]}</h3><div class="opts">${ord.map((o,k)=>`<button type="button" data-o="${o}"><b>${"ABCD"[k]}</b><span>${q[1][o]}</span></button>`).join("")}</div><div id="qzFb"></div>`}
+document.getElementById("qz").addEventListener("click",e=>{const d=T[lang];const ob=e.target.closest("[data-o]");
+  if(ob&&!ob.disabled){const o=+ob.dataset.o,ok=o===0;qzAns[qzI]=ok;if(ok)qzS++;const bs=document.querySelectorAll("#qz [data-o]");bs.forEach(b=>{b.disabled=true;if(+b.dataset.o===0)b.classList.add("ok")});if(!ok)ob.classList.add("no");
+    try{navigator.vibrate&&navigator.vibrate(ok?30:[40,60,40])}catch(_){}
+    document.getElementById("qzFb").innerHTML=`<div class="exp"><strong>${ok?"✓ "+d.qzOk:"✗ "+d.qzNo}</strong>${d.qs[qzI][2]}</div><button class="btn gold" type="button" data-q="next">${qzI<4?d.qzNext:d.qzFin}</button>`;
+    document.querySelector('#qzFb .btn').scrollIntoView({behavior:"smooth",block:"nearest"});return}
+  const b=e.target.closest("[data-q]");if(!b)return;const a=b.dataset.q;
+  if(a==="start"||a==="again"){qzI=0;qzS=0;qzAns=[];qzOrd=d.qs.map(()=>qzShuf(4));renderQuiz();document.getElementById("qz").scrollIntoView({behavior:"smooth",block:"start"})}
+  else if(a==="next"){qzI++;renderQuiz();document.getElementById("qz").scrollIntoView({behavior:"smooth",block:"start"})}
+  else if(a==="reg"){window._regCtx=`${d.qzCtx}: ${qzS}/5 · ${b.dataset.code}`;location.hash="#register";setTimeout(()=>{const n=document.getElementById("regCtx");n.textContent=window._regCtx;n.hidden=false;document.querySelector('#rf [name=name]').focus()},80)}
+  else if(a==="share"){const tx=d.qzShareT.replace("{s}",qzS),url="https://strmedicaapp.com/#quiz";if(navigator.share)navigator.share({title:"STR",text:tx,url}).catch(()=>{});else window.open("https://wa.me/?text="+encodeURIComponent(tx+" "+url),"_blank","noopener")}
+  else if(a==="spin")location.hash="#spin"});
+
+// ---- centrifuge simulator ----
+const CF={rpm:0,ang:0,p:0,hold:false,last:0,raf:0,done:false};
+function renderCf(){const d=T[lang];if(!document.getElementById("cfC"))return;cfStatus();cfDraw()}
+function cfStatus(){const d=T[lang],st=document.getElementById("cfSt");if(!st)return;
+  st.textContent=CF.done?d.cfS3:(!CF.hold&&CF.rpm>200&&CF.p>0)?d.cfSlow:CF.p<=0?d.cfS0:CF.p<.75?d.cfS1:d.cfS2;
+  document.getElementById("cfActs").hidden=!CF.done}
+function cfLayer(ctx,x,y,w,h,p,lab){// tube with contents; y=top, h=height of liquid column
+  const fin={pl:.52,bc:.035},rb=1-fin.pl-fin.bc;
+  ctx.save();ctx.beginPath();const r=w/2;ctx.moveTo(x,y);ctx.lineTo(x,y+h-r);ctx.arc(x+r,y+h-r,r,Math.PI,0,true);ctx.lineTo(x+w,y);ctx.closePath();ctx.clip();
+  ctx.fillStyle="#7d1420";ctx.fillRect(x,y,w,h);
+  const ep=1-Math.pow(1-p,2.2);const plH=h*fin.pl*ep,bcH=h*fin.bc*Math.max(0,(p-.45)/.55);
+  // plasma (top) with soft boundary
+  const g=ctx.createLinearGradient(0,y,0,y+plH+h*.06*(1-p)+2);g.addColorStop(0,"#f6d77a");g.addColorStop(Math.max(0,1-.25*(1-p)-.15),"#f1c55a");g.addColorStop(1,"rgba(125,20,32,0)");
+  ctx.fillStyle=g;ctx.fillRect(x,y,w,plH+h*.06*(1-p)+2);
+  if(p>.7){ctx.fillStyle=`rgba(236,170,60,${(p-.7)/.3*.55})`;ctx.fillRect(x,y+plH*.62,w,plH*.38)}
+  if(bcH>0){ctx.fillStyle=`rgba(245,240,228,${Math.min(1,(p-.45)/.4)})`;ctx.fillRect(x,y+plH,w,bcH)}
+  // darker settled red cells
+  ctx.fillStyle=`rgba(90,8,18,${p*.6})`;ctx.fillRect(x,y+plH+bcH,w,h);
+  ctx.restore();
+  return {plH,bcH}}
+function cfDraw(){const c=document.getElementById("cfC");if(!c)return;const x=c.getContext("2d"),W=c.width,H=c.height,d=T[lang];x.clearRect(0,0,W,H);
+  // rotor (top view)
+  const cx=W/2,cy=240,R=200;x.save();x.translate(cx,cy);
+  const rg=x.createRadialGradient(0,0,20,0,0,R+30);rg.addColorStop(0,"#5d7590");rg.addColorStop(.8,"#2a3e55");rg.addColorStop(1,"#16263a");x.fillStyle=rg;x.beginPath();x.arc(0,0,R+24,0,7);x.fill();
+  x.strokeStyle="rgba(255,196,70,.6)";x.lineWidth=4;x.beginPath();x.arc(0,0,R+24,0,7);x.stroke();
+  const blur=Math.min(1,CF.rpm/3500),ghosts=blur>.15?5:1;
+  for(let gI=0;gI<ghosts;gI++){x.save();x.rotate(CF.ang-gI*blur*.09);x.globalAlpha=gI?(.35*(1-gI/ghosts)):1;
+    for(let i=0;i<6;i++){x.save();x.rotate(i*Math.PI/3);x.fillStyle="#0d1826";x.beginPath();x.roundRect(-30,-R+8,60,150,30);x.fill();
+      const tg=x.createLinearGradient(0,-R+18,0,-R+148);const ep=1-Math.pow(1-CF.p,2.2);tg.addColorStop(0,"#f3cd66");tg.addColorStop(Math.max(.02,.52*ep),CF.p>.05?"#efc15a":"#7d1420");tg.addColorStop(Math.min(1,.52*ep+.03),"#7d1420");tg.addColorStop(1,"#5a0812");
+      x.fillStyle=CF.p>0?tg:"#7d1420";x.beginPath();x.roundRect(-20,-R+18,40,130,20);x.fill();
+      x.fillStyle=["#E9B44C","#2C6FA8","#E9B44C","#A3242E","#E9B44C","#2C6FA8"][i];x.beginPath();x.roundRect(-24,-R+6,48,22,6);x.fill();x.restore()}
+    x.restore()}
+  x.globalAlpha=1;x.fillStyle="#c9d6e3";x.beginPath();x.arc(0,0,34,0,7);x.fill();x.fillStyle="#10233A";x.font="800 26px Archivo, sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText("STR",0,1);x.restore();
+  // big tube (side view)
+  const tx=W/2-55,ty=566,tw=110,th=320;
+  x.fillStyle="rgba(255,255,255,.12)";x.strokeStyle="rgba(255,255,255,.7)";x.lineWidth=4;
+  x.beginPath();x.moveTo(tx-6,ty-30);x.lineTo(tx-6,ty+th-tw/2);x.arc(tx+tw/2,ty+th-tw/2,tw/2+6,Math.PI,0,true);x.lineTo(tx+tw+6,ty-30);x.stroke();
+  x.fillStyle="#E9B44C";x.beginPath();x.roundRect(tx-16,ty-70,tw+32,46,10);x.fill();x.fillStyle="#10233A";x.font="800 24px Archivo, sans-serif";x.textAlign="center";x.fillText("HighCell",tx+tw/2,ty-46);
+  const L=cfLayer(x,tx,ty,tw,th,CF.p);
+  // labels
+  if(CF.p>.98){x.font="700 22px Archivo, sans-serif";x.textAlign="left";x.textBaseline="middle";const lx=tx+tw+30;
+    const items=[[ty+L.plH*.3,d.cfL[0],"#f6d77a"],[ty+L.plH*.8,d.cfL[1],"#ECAA3C"],[ty+L.plH+L.bcH/2,d.cfL[2],"#F5F0E4"],[ty+L.plH+L.bcH+(th-L.plH-L.bcH)*.5,d.cfL[3],"#e04a5a"]];
+    items.forEach(([yy,t,col],i)=>{x.strokeStyle=col;x.lineWidth=3;x.beginPath();x.moveTo(tx+tw+6,yy);x.lineTo(lx-6,yy+(i===2?0:0));x.stroke();x.fillStyle=col;x.beginPath();x.arc(lx,yy,6,0,7);x.fill();x.fillStyle="#fff";x.fillText(t,lx+14,yy)})}
+  x.fillStyle="rgba(255,255,255,.45)";x.font="500 18px Archivo, sans-serif";x.textAlign="center";x.fillText(d.cfNote,W/2,H-14);
+  document.getElementById("cfRpm").textContent=Math.round(CF.rpm/10)*10}
+function cfTick(t){const dt=Math.min(.05,(t-(CF.last||t))/1000);CF.last=t;
+  const target=CF.hold?3500:0;CF.rpm+=(target-CF.rpm)*(CF.hold?1.6:1.1)*dt;if(!CF.hold&&CF.rpm<15)CF.rpm=0;
+  CF.ang+=CF.rpm/60*2*Math.PI*dt*.12;
+  if(!CF.done){CF.p=Math.min(1,CF.p+Math.pow(CF.rpm/3500,2)*dt/5);if(CF.p>=1){CF.done=true;try{navigator.vibrate&&navigator.vibrate([60,40,60])}catch(_){}}}
+  cfDraw();cfStatus();
+  if(CF.rpm>0||CF.hold)CF.raf=requestAnimationFrame(cfTick);else{CF.raf=0;CF.last=0}}
+function cfGo(){if(!CF.raf){CF.last=0;CF.raf=requestAnimationFrame(cfTick)}}
+(()=>{const b=document.getElementById("cfHold"),on=e=>{e.preventDefault();CF.hold=true;b.classList.add("on");cfGo()},off=()=>{CF.hold=false;b.classList.remove("on")};
+  b.addEventListener("pointerdown",on);["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,off));b.addEventListener("contextmenu",e=>e.preventDefault());
+  b.addEventListener("keydown",e=>{if((e.key===" "||e.key==="Enter")&&!e.repeat){on(e)}});b.addEventListener("keyup",e=>{if(e.key===" "||e.key==="Enter")off()});
+  document.getElementById("cfRe").addEventListener("click",()=>{CF.p=0;CF.done=false;CF.rpm=0;cfDraw();cfStatus()});
+  document.getElementById("cfQz").addEventListener("click",()=>{location.hash="#quiz"});
+  document.getElementById("cfHc").addEventListener("click",()=>{const i=PRODS.findIndex(p=>p.n==="HighCell");openB(i<0?0:i)})})();
+
 let lang="tr";
 function setLang(l){
   lang=l; const d=T[l]; document.documentElement.lang=l;
@@ -1345,12 +1500,12 @@ function setLang(l){
   document.getElementById("cats").innerHTML=d.cats.map((c,i)=>`<details class="cat"${i===0?" open":""}><summary><span class="ico" style="background:${TINTS[i][0]};color:${TINTS[i][1]}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[i]}</svg></span><span><h3>${c[0]}${i===5?`<span class="new">${d.newL}</span>`:""}</h3><small>${c[1]}</small></span><svg class="chev" viewBox="0 0 24 24" width="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary><div class="body">${c[2]}${i===0?'<div class="tags"><span>PRP Kit</span><span>CGF</span><span>PRF</span><span>Exosome Kit</span></div>':i===2?'<div class="tags"><span>SVF Kit</span><span>BMAC</span><span>Stem cell kit</span></div>':i===1?'<div class="tags"><span>Major ozone</span></div>':""}</div></details>`).join("");
   document.getElementById("svc").innerHTML=d.svc.map(s=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-10"/></svg><div><b>${s[0]}</b><span>${s[1]}</span></div></li>`).join("");
   document.getElementById("ferr").textContent=""; document.getElementById("out").classList.remove("on");
-  renderExtra(); renderOrder(); renderNews(); renderReg(); renderTeam(); renderAes(); renderOf(); renderScan();
+  renderExtra(); renderOrder(); renderNews(); renderReg(); renderTeam(); renderAes(); renderOf(); renderScan(); renderQuiz(); renderCf();
   try{localStorage.setItem("str-lang",l)}catch(e){}
 }
 document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
 function route(){
-  const v=(location.hash||"#home").slice(1); const ok=["home","products","order","register","oem","contact","scan"].includes(v)?v:"home";
+  const v=(location.hash||"#home").slice(1); const ok=["home","products","order","register","oem","contact","scan","quiz","spin"].includes(v)?v:"home";
   document.querySelectorAll(".view").forEach(s=>s.classList.toggle("on",s.id==="v-"+ok));
   document.querySelectorAll("nav.tabs a").forEach(a=>a.toggleAttribute("aria-current",a.dataset.v===ok)||0);
   document.querySelectorAll("nav.tabs a").forEach(a=>{if(a.dataset.v===ok)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
