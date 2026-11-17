@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" translate="no" class="notranslate">
 <head>
 <meta charset="utf-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#10233A">
 <link rel="manifest" href="manifest.webmanifest">
@@ -993,8 +994,8 @@ let spSel=0,pkSel=0;
 function renderExtra(){
   const d=T[lang];
   document.getElementById("rail").innerHTML=PRODS.map((p,i)=>`<button class="pcard box" type="button" data-b="${i}"><img src="${p.img}" alt="${p.n}"><span>${p.n}</span><small>${p.d[lang]}</small></button>`).join("");
-  document.querySelectorAll(".cat .body").forEach((b,ci)=>{const ps=PRODS.map((p,i)=>[p,i]).filter(x=>x[0].c===ci);if(ps.length)b.insertAdjacentHTML("beforeend",`<div class="boxrow">${ps.map(([p,i])=>`<button type="button" data-b="${i}"><img src="${p.img}" alt=""><span>${p.n}</span></button>`).join("")}</div>`)});
-  document.querySelectorAll(".cat .body").forEach((b,i)=>b.insertAdjacentHTML("afterbegin",`<img src="${IMG[i]}" alt="">`));
+  document.querySelectorAll(".cat .body").forEach((b,ci)=>{b.querySelectorAll(".boxrow").forEach(x=>x.remove());const ps=PRODS.map((p,i)=>[p,i]).filter(x=>x[0].c===ci);if(ps.length)b.insertAdjacentHTML("beforeend",`<div class="boxrow">${ps.map(([p,i])=>`<button type="button" data-b="${i}"><img src="${p.img}" alt=""><span>${p.n}</span></button>`).join("")}</div>`)});
+  document.querySelectorAll(".cat .body").forEach((b,i)=>{if(!b.querySelector(":scope > img"))b.insertAdjacentHTML("afterbegin",`<img loading="lazy" src="${IMG[i]}" alt="">`)});
   document.getElementById("pkt").innerHTML=`<span class="chl">${d.pkLbl}</span>`+d.pk.map((x,i)=>`<button type="button" role="radio" aria-checked="${i===pkSel}" data-k="${i}"><b>${x[0]}</b><small>${x[1]}</small></button>`).join("");
   document.getElementById("chips").innerHTML=`<span class="chl">${d.spLbl}</span>`+d.sp.map((x,i)=>`<button type="button" role="radio" aria-checked="${i===spSel}" data-s="${i}">${x[0]}</button>`).join("");
   const dn=document.getElementById("spDone");if(dn){dn.classList.remove("on");dn.innerHTML=""}
