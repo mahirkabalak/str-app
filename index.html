@@ -419,6 +419,29 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .pkt button small{font-size:12px;opacity:.8;font-weight:500}
 .starter{overflow-anchor:none}.sp-box{min-height:236px}
 .chips button{-webkit-tap-highlight-color:transparent}
+.slide.kit{background-color:#fff}
+.slide.kit::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,35,58,.05) 0%,rgba(16,35,58,.55) 45%,rgba(16,35,58,.95) 78%);z-index:0}
+.slide>*{position:relative;z-index:1}
+
+.oemflow{margin:14px 16px 0;background:var(--ink);color:#fff;border-radius:22px;padding:16px}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:#1E3550;border-radius:14px;padding:4px;gap:4px}
+.seg button{padding:10px;border-radius:11px;font-weight:700;color:#AFC0D0;font-size:15px}
+.seg button[aria-selected="true"]{background:linear-gradient(180deg,#F7D27A,#E0A53A);color:var(--ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 3px 0 #A06E14}
+.oem-def{font-size:14px;color:#C4D2DE;margin:12px 2px}
+.steps{overflow:hidden;border-radius:16px;background:#fff;color:var(--ink)}
+.st-track{display:flex;transition:transform .35s cubic-bezier(.3,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){.st-track{transition:none}}
+.st{flex:0 0 100%;padding:18px 18px 14px;min-height:150px}
+.st-n{display:inline-block;font-size:12px;font-weight:800;background:var(--plasma-soft);color:#7A5200;border-radius:999px;padding:3px 10px}
+.st h4{font-size:20px;font-variation-settings:"wdth" 80;margin-top:10px;line-height:1.15}
+.st p{font-size:14.5px;color:var(--ink2);margin-top:6px}
+.st-bar{height:5px;background:var(--line)}
+.st-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--plasma),var(--rbc));transition:width .35s}
+.step-nav{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-top:12px}
+.step-nav span{font-weight:700;font-size:14px;color:#AFC0D0}
+.step-nav .btn{margin:0;padding:11px}
+.step-nav .btn:disabled{opacity:.4}
+#oemCta{margin-top:12px;background:linear-gradient(180deg,#2A4A6C,#1B3350)}
 </style>
 </head>
 <body>
@@ -545,6 +568,13 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
     <!-- OEM -->
     <section class="view" id="v-oem">
       <div class="sec"><h2 data-i="oemT"></h2><p class="lead" data-i="oemP"></p></div>
+      <section class="oemflow" id="oemflow">
+        <div class="seg" role="tablist" id="oemSeg"><button role="tab" data-m="oem" aria-selected="true">OEM</button><button role="tab" data-m="pl" aria-selected="false">Private Label</button></div>
+        <p class="oem-def" id="oemDef"></p>
+        <div class="steps" id="oemSteps"></div>
+        <div class="step-nav"><button class="btn alt" type="button" id="stPrev" data-i="stPrev"></button><span id="stCount"></span><button class="btn gold" type="button" id="stNext" data-i="stNext"></button></div>
+        <a class="btn" href="#f" id="oemCta" data-i="oemCta"></a>
+      </section>
       <ul class="svc" id="svc"></ul>
       <div class="sec"><h2 data-i="formT"></h2><p class="lead" data-i="formP"></p></div>
       <form id="f" novalidate>
@@ -793,7 +823,7 @@ feat:[["PRP, PRF ve CGF hazırlama sistemleri","Sitokin ve polinükleotid çöz�
 ["Ürojinekolojik biyolojik tedavi sistemleri","Rejeneratif terapötik uygulamalar","Steril ambalaj, MDR CE uyumlu üretim","OEM / Private Label ile kendi markanızla"],
 ["PRP tedavileri","ExoPrime ile eksozom sistemleri","Polinükleotid teknolojileri","OEM / Private Label ile kendi markanızla"],
 ["Ortopedik implant teknolojileri","Protez çözümleri","Portföyün en yeni ürün grubu","Distribütörlük başvurusuna açık"]],
-spBadge:"MEDICA katılımcılarına özel",pk:[["Tanışma Paketi","İlk deneyim için küçük set"],["İlk Sipariş Paketi","Düzenli kullanıma başlangıç"],["Klinik Başlangıç Paketi","Klinik kurulumu için kapsamlı set"]],pkLbl:"Paket türü",spLbl:"Branş",spT:"Size uygun paket",spP:"Branşınızı seçin, uygulamaya başlamanız için önerdiğimiz paketi görün.",spBtn:"Fabrikaya gönder",spDoneT:"Talebiniz fabrikaya hazır",spDoneP:"Paketler standdan verilmez; doğrudan fabrikamızdan gönderilir. Bilgilerinizi bırakın, ekibimiz gönderim için sizinle iletişime geçsin.",spWhere:"Fabrikadan gönderim",spWhen:"Sorularınız için standımız: Hall 1 · F38",spCode:"Talep kodu",spLeave:"Bilgilerimi bırak, fabrikaya gönder",
+spBadge:"MEDICA katılımcılarına özel",pk:[["Tanışma Paketi","İlk deneyim için küçük set"],["İlk Sipariş Paketi","Düzenli kullanıma başlangıç"],["Klinik Starter Kit","Klinik kurulumu için kapsamlı set"]],pkLbl:"Paket türü",spLbl:"Branş",spT:"Size uygun paket",spP:"Branşınızı seçin, uygulamaya başlamanız için önerdiğimiz paketi görün.",spBtn:"Fabrikaya gönder",spDoneT:"Talebiniz fabrikaya hazır",spDoneP:"Paketler standdan verilmez; doğrudan fabrikamızdan gönderilir. Bilgilerinizi bırakın, ekibimiz gönderim için sizinle iletişime geçsin.",spWhere:"Fabrikadan gönderim",spWhen:"Sorularınız için standımız: Hall 1 · F38",spCode:"Talep kodu",spLeave:"Bilgilerimi bırak, fabrikaya gönder",
 spNote:"Paketler fabrikamızdan gönderilir. İçerik ve fiyat için talep bırakın, ekibimiz dönüş yapsın.",
 sp:[["Estetik",[["Unique PRP","Trombositten zengin plazma hazırlama sistemi"],["ExoPrime","Otolog plazma işleme"],["HighCell CGF","GrowthCell CGF sistemi"]]],
 ["Ortopedi",[["Unique PRP","PRP hazırlama sistemi"],["HighCell CGF","GrowthCell CGF sistemi"],["BMAC / SVF","Rejeneratif tıp kitleri"]]],
@@ -827,7 +857,7 @@ feat:[["PRP-, PRF- und CGF-Aufbereitungssysteme","Zytokin- und Polynukleotid-Lö
 ["Biologische Behandlungssysteme für die Urogynäkologie","Regenerative therapeutische Anwendungen","Sterile Verpackung, MDR-CE-konform","Als OEM / Private Label erhältlich"],
 ["PRP-Behandlungen","Exosom-Systeme mit ExoPrime","Polynukleotid-Technologien","Als OEM / Private Label erhältlich"],
 ["Orthopädische Implantattechnologien","Prothesenlösungen","Neueste Produktgruppe im Portfolio","Offen für Vertriebspartner"]],
-spBadge:"Exklusiv für MEDICA-Besucher",pk:[["Kennenlernpaket","Kleines Set zum Kennenlernen"],["Erstbestellungspaket","Einstieg in die regelmäßige Nutzung"],["Klinik-Starterpaket","Umfassendes Set für den Praxisstart"]],pkLbl:"Paketart",spLbl:"Fachgebiet",spT:"Ihr Paket",spP:"Wählen Sie Ihr Fachgebiet und sehen Sie das empfohlene Paket für den Einstieg.",spBtn:"An das Werk senden",spDoneT:"Ihre Anfrage ist bereit für das Werk",spDoneP:"Pakete werden nicht am Stand ausgegeben, sondern direkt ab Werk versendet. Hinterlassen Sie Ihre Daten – unser Team meldet sich wegen des Versands.",spWhere:"Versand ab Werk",spWhen:"Fragen? Besuchen Sie uns: Halle 1 · F38",spCode:"Anfragecode",spLeave:"Daten hinterlassen, an das Werk senden",
+spBadge:"Exklusiv für MEDICA-Besucher",pk:[["Kennenlernpaket","Kleines Set zum Kennenlernen"],["Erstbestellungspaket","Einstieg in die regelmäßige Nutzung"],["Klinik-Starterkit","Umfassendes Set für den Praxisstart"]],pkLbl:"Paketart",spLbl:"Fachgebiet",spT:"Ihr Paket",spP:"Wählen Sie Ihr Fachgebiet und sehen Sie das empfohlene Paket für den Einstieg.",spBtn:"An das Werk senden",spDoneT:"Ihre Anfrage ist bereit für das Werk",spDoneP:"Pakete werden nicht am Stand ausgegeben, sondern direkt ab Werk versendet. Hinterlassen Sie Ihre Daten – unser Team meldet sich wegen des Versands.",spWhere:"Versand ab Werk",spWhen:"Fragen? Besuchen Sie uns: Halle 1 · F38",spCode:"Anfragecode",spLeave:"Daten hinterlassen, an das Werk senden",
 spNote:"Pakete werden ab Werk versendet. Für Inhalt und Preise eine Anfrage hinterlassen – wir melden uns.",
 sp:[["Ästhetik",[["Unique PRP","System zur Aufbereitung von plättchenreichem Plasma"],["ExoPrime","Autologe Plasmaaufbereitung"],["HighCell CGF","GrowthCell-CGF-System"]]],
 ["Orthopädie",[["Unique PRP","PRP-Aufbereitungssystem"],["HighCell CGF","GrowthCell-CGF-System"],["BMAC / SVF","Kits für regenerative Medizin"]]],
@@ -861,17 +891,17 @@ document.getElementById("of").addEventListener("input",updOrder);
 document.getElementById("of").addEventListener("submit",e=>e.preventDefault());
 document.getElementById("oCopy").addEventListener("click",async e=>{try{await navigator.clipboard.writeText(orderText());e.target.textContent=T[lang].copied}catch(err){}});
 
-const NX={tr:{nwT:"Haberler",sl:[["acad","Yazı","Rejeneratif tıp teknolojilerinde süren inovasyon","Mustafa Bey, STR'nin üretimden ürüne inovasyon yaklaşımını anlatıyor.","Yazıyı oku","#article"] ,["sp","Fuara özel","Size uygun paket","Branşınızı seçin, başlangıç paketinizi oluşturun.","Paket oluştur","#starter"]],
+const NX={tr:{nwT:"Haberler",sl:[["kit","Düsseldorf MEDICA'ya özel","Klinik Starter Kit ile tanışalım","Kliniğinize uygun kapsamlı set; fabrikamızdan doğrudan gönderilir.","Şimdi tanışalım","#starter"],["acad","Yazı","Rejeneratif tıp teknolojilerinde süren inovasyon","Mustafa Bey, STR'nin üretimden ürüne inovasyon yaklaşımını anlatıyor.","Yazıyı oku","#article"] ,["sp","Fuara özel","Size uygun paket","Branşınızı seçin, başlangıç paketinizi oluşturun.","Paket oluştur","#starter"]],
 news:[["Yazı","Rejeneratif tıp teknolojilerinde süren inovasyon","Mustafa Üneş · Owner, STR Biyoteknolojileri","#article"],["Kas 2026","MEDICA 2026'da yerimizi aldık","Düsseldorf'ta Hall 1, Stand F38'de yeni ürünlerimizi tanıtıyoruz.","#contact"],["Yeni","Ortopedik implant ürün grubu","Protez teknolojileri portföyümüze eklendi.","#products"],["Blog","Klinikler için PRP kiti fiyatları","Maliyet ve performans karşılaştırması.","https://www.strmedical.com/blog"],["Bilim","Trombosit kaynaklı veziküller","Ekstrasellüler veziküllerin izolasyonu ve karakterizasyonu.","https://www.strmedical.com/makaleler"],["Mevzuat","PRP'de IVD tüp kullanımının riskleri","Tıbbi cihaz mevzuatı açısından değerlendirme.","https://www.strmedical.com/blog"]]},
-en:{nwT:"News",sl:[["acad","Article","Ongoing innovation in regenerative medicine technologies","Mustafa Bey on STR's approach to innovation, from production to product.","Read the article","#article"] ,["sp","Fair special","Your pack","Pick your specialty and build your starter pack.","Build your pack","#starter"]],
+en:{nwT:"News",sl:[["kit","Exclusive for MEDICA Düsseldorf","Meet the Clinic Starter Kit","A comprehensive set for your clinic, shipped directly from our factory.","Let's meet now","#starter"],["acad","Article","Ongoing innovation in regenerative medicine technologies","Mustafa Bey on STR's approach to innovation, from production to product.","Read the article","#article"] ,["sp","Fair special","Your pack","Pick your specialty and build your starter pack.","Build your pack","#starter"]],
 news:[["Article","Ongoing innovation in regenerative medicine technologies","Mustafa Üneş · Owner, STR Biotechnologies","#article"],["Nov 2026","We're exhibiting at MEDICA 2026","Presenting our new products in Düsseldorf, Hall 1, Stand F38.","#contact"],["New","Orthopedic implant product group","Prosthesis technologies added to our portfolio.","#products"],["Blog","PRP kit prices for clinics","A cost and performance comparison.","https://www.strmedical.com/blog"],["Science","Platelet-derived vesicles","Isolating and characterizing extracellular vesicles.","https://www.strmedical.com/makaleler"],["Regulation","Risks of IVD tubes in PRP","A medical device regulation perspective.","https://www.strmedical.com/blog"]]},
-de:{nwT:"Neuigkeiten",sl:[["acad","Beitrag","Fortlaufende Innovation in der regenerativen Medizintechnik","Mustafa Bey über STRs Innovationsansatz – von der Produktion zum Produkt.","Beitrag lesen","#article"] ,["sp","Messeangebot","Ihr Paket","Fachgebiet wählen und Starterpaket erstellen.","Paket erstellen","#starter"]],
+de:{nwT:"Neuigkeiten",sl:[["kit","Exklusiv zur MEDICA Düsseldorf","Lernen Sie das Klinik-Starterkit kennen","Ein umfassendes Set für Ihre Praxis, direkt ab Werk versendet.","Jetzt kennenlernen","#starter"],["acad","Beitrag","Fortlaufende Innovation in der regenerativen Medizintechnik","Mustafa Bey über STRs Innovationsansatz – von der Produktion zum Produkt.","Beitrag lesen","#article"] ,["sp","Messeangebot","Ihr Paket","Fachgebiet wählen und Starterpaket erstellen.","Paket erstellen","#starter"]],
 news:[["Beitrag","Fortlaufende Innovation in der regenerativen Medizintechnik","Mustafa Üneş · Owner, STR Biotechnologies","#article"],["Nov 2026","Wir stellen auf der MEDICA 2026 aus","Neue Produkte in Düsseldorf, Halle 1, Stand F38.","#contact"],["Neu","Produktgruppe orthopädische Implantate","Prothesentechnologien neu im Portfolio.","#products"],["Blog","PRP-Kit-Preise für Kliniken","Ein Kosten- und Leistungsvergleich.","https://www.strmedical.com/blog"],["Wissenschaft","Thrombozyten-Vesikel","Isolierung und Charakterisierung extrazellulärer Vesikel.","https://www.strmedical.com/makaleler"],["Regulierung","Risiken von IVD-Röhrchen bei PRP","Aus Sicht der Medizinprodukteverordnung.","https://www.strmedical.com/blog"]]}};
 for(const k in NX)Object.assign(T[k],NX[k]);
 let slI=0,slT=null;
 function renderNews(){const d=T[lang],booth=document.querySelector(".booth").src;
-  const bg={acad:IMG[0],medica:booth,sp:IMG[4]};
-  document.getElementById("slides").innerHTML=d.sl.map((x,i)=>`<a class="slide ${x[0]==="acad"?"acad":""}" href="${x[5]}" style="${x[0]==="acad"?`--bg:url(${bg.acad})`:`background-image:linear-gradient(180deg,rgba(16,35,58,.15),rgba(16,35,58,.9) 70%),url(${bg[x[0]]})`}" aria-label="${x[2]}"><span class="tag ${x[0]==="medica"?"r":""}">${x[1]}</span><h3>${x[2]}</h3><p>${x[3]}</p><span class="go">${x[4]}</span></a>`).join("");
+  const bg={acad:IMG[0],medica:booth,sp:IMG[4],kit:PRODS[0].img};
+  document.getElementById("slides").innerHTML=d.sl.map((x,i)=>`<a class="slide ${x[0]==="acad"?"acad":""} ${x[0]==="kit"?"kit":""}" href="${x[5]}" ${x[0]==="kit"?'data-pk="2"':""} style="${x[0]==="acad"?`--bg:url(${bg.acad})`:(x[0]==="kit"?`background:#fff url(${bg.kit}) center 12%/78% auto no-repeat`:`background-image:linear-gradient(180deg,rgba(16,35,58,.15),rgba(16,35,58,.9) 70%),url(${bg[x[0]]})`)}" aria-label="${x[2]}"><span class="tag ${x[0]==="medica"||x[0]==="kit"?"r":""}">${x[1]}</span><h3>${x[2]}</h3><p>${x[3]}</p><span class="go">${x[4]}</span></a>`).join("");
   document.getElementById("dots").innerHTML=d.sl.map((x,i)=>`<button type="button" aria-label="${i+1}" data-sl="${i}"></button>`).join("");
   document.getElementById("nlist").innerHTML=d.news.map(n=>`<a class="nitem" href="${n[3]}"><time>${n[0]}</time><div><b>${n[1]}</b><span>${n[2]}</span></div></a>`).join("");
   markDot();}
@@ -882,7 +912,7 @@ function goSlide(i){const w=SL.clientWidth;SL.scrollTo({left:i*(w+12),behavior:"
 document.getElementById("dots").addEventListener("click",e=>{const b=e.target.closest("[data-sl]");if(b){goSlide(+b.dataset.sl);restart()}});
 function restart(){clearInterval(slT);if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;slT=setInterval(()=>{if(document.getElementById("v-home").classList.contains("on"))goSlide((slI+1)%T[lang].sl.length)},5500)}
 SL.addEventListener("pointerdown",()=>clearInterval(slT));
-document.addEventListener("click",e=>{const a=e.target.closest('a[href="#starter"]');if(a){e.preventDefault();location.hash="#home";setTimeout(()=>document.getElementById("starter").scrollIntoView({behavior:"smooth"}),60)}});
+document.addEventListener("click",e=>{const a=e.target.closest('a[href="#starter"]');if(a){e.preventDefault();if(a.dataset.pk){pkSel=+a.dataset.pk;updStarter()}location.hash="#home";setTimeout(()=>document.getElementById("starter").scrollIntoView({behavior:"smooth"}),60)}});
 restart();
 
 const QD=document.getElementById("qd");
@@ -992,6 +1022,28 @@ function renderAes(){const d=T[lang];const sec=document.getElementById("aestheti
   const pick=["ExoPrime","Renewa Capilla","Strakin Multicap","S&M PRF+","GrowthCell","Labfuge"];
   document.getElementById("aeProds").innerHTML=pick.map(n=>{const i=PRODS.findIndex(p=>p.n===n);return i<0?"":`<button type="button" data-b="${i}"><img loading="lazy" src="${PRODS[i].img}" alt=""><span>${n}</span></button>`}).join("");}
 document.getElementById("aeBtn").addEventListener("click",()=>{spSel=0;updStarter();document.getElementById("spBtn").click();});
+
+const OFX={"tr": {"stPrev": "Geri", "stNext": "İleri", "oemCta": "Başvuru formuna geç", "oemDone": "Başvuruya geç", "def": {"oem": "OEM: Sizin talebiniz ve teknik ihtiyacınıza göre ürünü sizin markanızla üretiriz; içerik, ambalaj ve kit yapısı size göre şekillenir.", "pl": "Private Label: Hazır ve onaylı STR ürün gamını, kendi marka etiketinizle hızlıca piyasaya çıkarırsınız."}, "steps": {"oem": [["İhtiyaç analizi", "Hedef pazarınızı, branşınızı ve ürün beklentinizi birlikte netleştiriyoruz."], ["Ürün ve kit tasarımı", "PRP, CGF, SVF, PRF, eksozom veya ozon ürününün içeriğini ve kit yapısını belirliyoruz."], ["Marka ve ambalaj", "Logonuz, etiketiniz ve kutu tasarımınız ürünle birleşiyor."], ["Numune ve onay", "Numune üretilir; onayınızla seri üretime geçilir."], ["Regülasyon ve doküman", "MDR CE ve ISO 13485 kapsamında gerekli teknik dokümantasyon ve kayıt desteği."], ["Üretim ve sterilizasyon", "Temiz odada üretim, steril ambalaj ve kalite kontrol."], ["Sevkiyat", "Toplu tedarik ve 60+ ülkeye ihracat tecrübesiyle teslimat."]], "pl": [["Ürün seçimi", "Hazır STR ürün gamından satmak istediklerinizi seçiyorsunuz."], ["Etiket ve ambalaj", "Ürünler sizin markanızın etiketi ve kutusuyla hazırlanıyor."], ["Doküman desteği", "Ürünlere ait mevcut teknik dokümantasyon ve kayıt desteği sağlanıyor."], ["Üretim ve kalite", "Temiz odada, steril ambalajlı ve kalite kontrollü üretim."], ["Teslimat", "Siparişiniz fabrikadan doğrudan size gönderiliyor."]]}}, "en": {"stPrev": "Back", "stNext": "Next", "oemCta": "Go to application form", "oemDone": "Apply now", "def": {"oem": "OEM: We manufacture the product under your brand to your requirements and technical needs; content, packaging and kit structure are shaped around you.", "pl": "Private label: Take STR's ready, approved product range to market quickly under your own brand label."}, "steps": {"oem": [["Needs analysis", "Together we define your target market, specialty and product expectations."], ["Product & kit design", "We define the content and kit structure of your PRP, CGF, SVF, PRF, exosome or ozone product."], ["Brand & packaging", "Your logo, label and box design come together with the product."], ["Sample & approval", "A sample is produced; with your approval we move to series production."], ["Regulation & documents", "Technical documentation and registration support under MDR CE and ISO 13485."], ["Production & sterilization", "Cleanroom production, sterile packaging and quality control."], ["Shipping", "Bulk supply and delivery backed by export experience in 60+ countries."]], "pl": [["Product selection", "You pick what you want to sell from STR's ready product range."], ["Label & packaging", "Products are prepared with your brand's label and box."], ["Document support", "Existing technical documentation and registration support for the products."], ["Production & quality", "Cleanroom, sterile-packed, quality-controlled production."], ["Delivery", "Your order ships directly from our factory to you."]]}}, "de": {"stPrev": "Zurück", "stNext": "Weiter", "oemCta": "Zum Anfrageformular", "oemDone": "Jetzt anfragen", "def": {"oem": "OEM: Wir fertigen das Produkt nach Ihren Anforderungen unter Ihrer Marke; Inhalt, Verpackung und Kit-Aufbau richten sich nach Ihnen.", "pl": "Private Label: Bringen Sie das fertige, zugelassene STR-Sortiment schnell unter Ihrem eigenen Markenetikett auf den Markt."}, "steps": {"oem": [["Bedarfsanalyse", "Gemeinsam klären wir Zielmarkt, Fachgebiet und Produkterwartungen."], ["Produkt- & Kit-Design", "Wir legen Inhalt und Kit-Aufbau Ihres PRP-, CGF-, SVF-, PRF-, Exosom- oder Ozonprodukts fest."], ["Marke & Verpackung", "Logo, Etikett und Box-Design werden mit dem Produkt vereint."], ["Muster & Freigabe", "Ein Muster wird gefertigt; nach Ihrer Freigabe beginnt die Serienproduktion."], ["Regulierung & Dokumente", "Technische Dokumentation und Registrierungsunterstützung nach MDR CE und ISO 13485."], ["Produktion & Sterilisation", "Reinraumfertigung, sterile Verpackung und Qualitätskontrolle."], ["Versand", "Großmengen und Lieferung mit Exporterfahrung in über 60 Länder."]], "pl": [["Produktauswahl", "Sie wählen aus dem fertigen STR-Sortiment, was Sie verkaufen möchten."], ["Etikett & Verpackung", "Die Produkte erhalten Etikett und Box Ihrer Marke."], ["Dokumentenunterstützung", "Vorhandene technische Dokumentation und Registrierungsunterstützung."], ["Produktion & Qualität", "Reinraum, steril verpackt, qualitätskontrolliert."], ["Lieferung", "Ihre Bestellung wird direkt ab Werk an Sie versendet."]]}}};
+for(const k in OFX){T[k].ofDef=OFX[k].def;T[k].ofSteps=OFX[k].steps;Object.assign(T[k],{stPrev:OFX[k].stPrev,stNext:OFX[k].stNext,oemCta:OFX[k].oemCta,oemDone:OFX[k].oemDone})}
+let ofMode="oem",ofI=0;
+function renderOf(){const d=T[lang],st=d.ofSteps[ofMode];ofI=Math.min(ofI,st.length-1);
+  document.querySelectorAll("#oemSeg button").forEach(b=>b.setAttribute("aria-selected",b.dataset.m===ofMode));
+  document.getElementById("oemDef").textContent=d.ofDef[ofMode];
+  const box=document.getElementById("oemSteps");
+  box.innerHTML=`<div class="st-track" style="transform:translateX(-${ofI*100}%)">${st.map((x,i)=>`<div class="st"><span class="st-n">${i+1}/${st.length}</span><h4>${x[0]}</h4><p>${x[1]}</p></div>`).join("")}</div><div class="st-bar"><i style="width:${(ofI+1)/st.length*100}%"></i></div>`;
+  document.getElementById("stCount").textContent=(ofI+1)+" / "+st.length;
+  document.getElementById("stPrev").disabled=ofI===0;
+  document.getElementById("stNext").textContent=ofI===st.length-1?d.oemDone:d.stNext;}
+function goSt(n){const st=T[lang].ofSteps[ofMode];if(n>=st.length){document.getElementById("f").scrollIntoView({behavior:"smooth"});return}ofI=Math.max(0,n);
+  const tr=document.querySelector("#oemSteps .st-track");tr.style.transform=`translateX(-${ofI*100}%)`;
+  document.querySelector("#oemSteps .st-bar i").style.width=((ofI+1)/st.length*100)+"%";document.getElementById("stCount").textContent=(ofI+1)+" / "+st.length;
+  document.getElementById("stPrev").disabled=ofI===0;document.getElementById("stNext").textContent=ofI===st.length-1?T[lang].oemDone:T[lang].stNext;}
+document.getElementById("oemSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;ofMode=b.dataset.m;ofI=0;renderOf();
+  const sel=document.querySelector("#f [name=type]");if(sel)sel.selectedIndex=ofMode==="oem"?0:1;});
+document.getElementById("stPrev").addEventListener("click",()=>goSt(ofI-1));
+document.getElementById("stNext").addEventListener("click",()=>goSt(ofI+1));
+(()=>{let x0=null;const el=document.getElementById("oemSteps");el.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});el.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)goSt(ofI+(dx<0?1:-1));x0=null});})();
+document.getElementById("oemCta").addEventListener("click",e=>{e.preventDefault();document.getElementById("f").scrollIntoView({behavior:"smooth"})});
 let spSel=0,pkSel=0;
 function updStarter(){const d=T[lang];
   document.querySelectorAll("#pkt button").forEach(b=>b.setAttribute("aria-checked",+b.dataset.k===pkSel));
@@ -1050,7 +1102,7 @@ function setLang(l){
   document.getElementById("cats").innerHTML=d.cats.map((c,i)=>`<details class="cat"${i===0?" open":""}><summary><span class="ico" style="background:${TINTS[i][0]};color:${TINTS[i][1]}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[i]}</svg></span><span><h3>${c[0]}${i===5?`<span class="new">${d.newL}</span>`:""}</h3><small>${c[1]}</small></span><svg class="chev" viewBox="0 0 24 24" width="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary><div class="body">${c[2]}${i===0?'<div class="tags"><span>PRP Kit</span><span>CGF</span><span>PRF</span><span>Exosome Kit</span></div>':i===2?'<div class="tags"><span>SVF Kit</span><span>BMAC</span><span>Stem cell kit</span></div>':i===1?'<div class="tags"><span>Major ozone</span></div>':""}</div></details>`).join("");
   document.getElementById("svc").innerHTML=d.svc.map(s=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-10"/></svg><div><b>${s[0]}</b><span>${s[1]}</span></div></li>`).join("");
   document.getElementById("ferr").textContent=""; document.getElementById("out").classList.remove("on");
-  renderExtra(); renderOrder(); renderNews(); renderReg(); renderTeam(); renderAes();
+  renderExtra(); renderOrder(); renderNews(); renderReg(); renderTeam(); renderAes(); renderOf();
   try{localStorage.setItem("str-lang",l)}catch(e){}
 }
 document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
