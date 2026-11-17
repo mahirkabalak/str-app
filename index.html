@@ -366,7 +366,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .sp-done strong{display:block;font-size:24px;font-variation-settings:"wdth" 75;line-height:1.05}
 .sp-done small{display:block;font-size:12.5px;color:var(--ink2)}
 .sp-done .code{display:inline-block;margin-top:8px;background:var(--ink);color:#fff;border-radius:8px;padding:4px 9px;font-weight:700;font-size:12.5px;letter-spacing:.03em}
-.sp-done a{display:block;margin-top:8px;font-size:13px;font-weight:700;color:var(--ink)}
+.sp-done a{display:flex;justify-content:center;margin-top:12px;background:var(--ink);color:#fff;border-radius:12px;padding:11px 12px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 4px 0 #071423}.sp-done a:active{transform:translateY(3px);box-shadow:0 1px 0 #071423}.sp-done strong{font-size:20px!important}
 
 .pcard.box{flex-basis:58%}
 .pcard.box img{aspect-ratio:4/3;object-fit:contain;background:#fff}
@@ -396,6 +396,21 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .tqr svg{display:block;width:100%;height:100%}
 .tbtns{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .tbtns .btn{padding:10px;font-size:14px;margin-bottom:4px}
+
+.aes{margin:18px 16px 0;background:#fff;border-radius:22px;overflow:hidden;box-shadow:inset 0 0 0 1px #DCE3E9,0 6px 0 #D2DCE5}
+.aes-hero{padding:22px 18px 18px;color:#fff;background:linear-gradient(180deg,rgba(16,35,58,.25),rgba(16,35,58,.92) 75%),var(--aebg) center/cover;min-height:190px;display:flex;flex-direction:column;justify-content:flex-end}
+.aes-tag{align-self:flex-start;background:var(--plasma);color:var(--ink);font-weight:800;font-size:12.5px;border-radius:999px;padding:4px 12px;box-shadow:0 3px 0 #A06E14;margin-bottom:auto}
+.aes-hero h2{font-size:25px;font-variation-settings:"wdth" 72;line-height:1.05;margin-top:14px}
+.aes-hero p{font-size:14px;color:#DCE6EF;margin-top:6px;max-width:34ch}
+.aes-uses{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 14px 4px}
+.aes-uses div{background:var(--ice);border-radius:14px;padding:12px;box-shadow:inset 0 0 0 1px #DCE3E9}
+.aes-uses b{display:block;font-size:14.5px;line-height:1.2}
+.aes-uses span{display:block;font-size:12.5px;color:var(--steel);margin-top:3px}
+.aes-uses i{font-style:normal;display:inline-grid;place-items:center;width:28px;height:28px;border-radius:9px;background:linear-gradient(180deg,#F6DADC,#EBC2C6);color:var(--rbc);font-size:14px;margin-bottom:6px;box-shadow:0 2px 0 #D6A6AB}
+.aes-h{font-size:16px;padding:12px 16px 0}
+.aes-prods{padding:0 14px}
+.aes .btn{margin:14px 14px 4px;width:calc(100% - 28px)}
+.aes-note{font-size:12px;color:var(--steel);padding:4px 16px 16px}
 </style>
 </head>
 <body>
@@ -446,6 +461,15 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
       </div>
 
 
+
+      <section class="aes" id="aesthetic">
+        <div class="aes-hero"><span class="aes-tag" data-i="aeTag"></span><h2 data-i="aeT"></h2><p data-i="aeP"></p></div>
+        <div class="aes-uses" id="aeUses"></div>
+        <h3 class="aes-h" data-i="aeProd"></h3>
+        <div class="boxrow aes-prods" id="aeProds"></div>
+        <button class="btn gold" type="button" id="aeBtn" data-i="aeBtn"></button>
+        <p class="aes-note" data-i="aeNote"></p>
+      </section>
 
       <section class="starter" id="starter">
         <span class="sp-badge" data-i="spBadge"></span>
@@ -760,8 +784,8 @@ feat:[["PRP, PRF ve CGF hazırlama sistemleri","Sitokin ve polinükleotid çöz�
 ["Ürojinekolojik biyolojik tedavi sistemleri","Rejeneratif terapötik uygulamalar","Steril ambalaj, MDR CE uyumlu üretim","OEM / Private Label ile kendi markanızla"],
 ["PRP tedavileri","ExoPrime ile eksozom sistemleri","Polinükleotid teknolojileri","OEM / Private Label ile kendi markanızla"],
 ["Ortopedik implant teknolojileri","Protez çözümleri","Portföyün en yeni ürün grubu","Distribütörlük başvurusuna açık"]],
-spBadge:"MEDICA katılımcılarına özel",spT:"Size uygun Starter Pack",spP:"Branşınızı seçin, uygulamaya başlamanız için önerdiğimiz paketi görün.",spBtn:"Paketi oluştur",spDoneT:"Paketiniz hazır",spDoneP:"Bu ekranı standımızda gösterin, paketinizi birlikte tamamlayalım.",spWhere:"Hall 1 · Stand F38",spWhen:"16–19 Kasım · MEDICA Düsseldorf",spCode:"Paket kodu",spLeave:"Standa gelemiyorum, talep bırak",
-spNote:"Paket içeriği ve fiyat için Hall 1, Stand F38'e uğrayın ya da talep bırakın.",
+spBadge:"MEDICA katılımcılarına özel",spT:"Size uygun Starter Pack",spP:"Branşınızı seçin, uygulamaya başlamanız için önerdiğimiz paketi görün.",spBtn:"Paketi fabrikadan iste",spDoneT:"Paket talebiniz oluşturuldu",spDoneP:"Starter Pack'ler standdan verilmez; doğrudan fabrikamızdan gönderilir. Bilgilerinizi bırakın, ekibimiz gönderim için sizinle iletişime geçsin.",spWhere:"Fabrikadan gönderim",spWhen:"Sorularınız için standımız: Hall 1 · F38",spCode:"Talep kodu",spLeave:"Bilgilerimi bırak ve fabrikadan iste",
+spNote:"Paketler fabrikamızdan gönderilir. İçerik ve fiyat için talep bırakın, ekibimiz dönüş yapsın.",
 sp:[["Estetik",[["Unique PRP","Trombositten zengin plazma hazırlama sistemi"],["ExoPrime","Otolog plazma işleme"],["HighCell CGF","GrowthCell CGF sistemi"]]],
 ["Ortopedi",[["Unique PRP","PRP hazırlama sistemi"],["HighCell CGF","GrowthCell CGF sistemi"],["BMAC / SVF","Rejeneratif tıp kitleri"]]],
 ["Ürojinekoloji",[["Unique PRP","PRP hazırlama sistemi"],["ExoPrime","Otolog plazma işleme"],["HighCell CGF","GrowthCell CGF sistemi"]]],
@@ -777,8 +801,8 @@ feat:[["PRP, PRF and CGF preparation systems","Cytokine and polynucleotide solut
 ["Urogynecological biological treatment systems","Regenerative therapeutic applications","Sterile packaging, MDR CE compliant","Available as OEM / private label"],
 ["PRP treatments","Exosome systems with ExoPrime","Polynucleotide technologies","Available as OEM / private label"],
 ["Orthopedic implant technologies","Prosthesis solutions","Newest product group in our portfolio","Open for distribution partners"]],
-spBadge:"For MEDICA visitors",spT:"Your starter pack",spP:"Pick your specialty to see the pack we recommend to get started.",spBtn:"Build my pack",spDoneT:"Your pack is ready",spDoneP:"Show this screen at our stand and we'll finalize your pack together.",spWhere:"Hall 1 · Stand F38",spWhen:"16–19 November · MEDICA Düsseldorf",spCode:"Pack code",spLeave:"Can't make it? Leave a request",
-spNote:"For contents and pricing, visit Hall 1, Stand F38 or leave a request.",
+spBadge:"For MEDICA visitors",spT:"Your starter pack",spP:"Pick your specialty to see the pack we recommend to get started.",spBtn:"Request from the factory",spDoneT:"Your pack request is created",spDoneP:"Starter packs are not handed out at the stand; they are shipped directly from our factory. Leave your details and our team will contact you about shipping.",spWhere:"Shipped from the factory",spWhen:"Questions? Visit us at Hall 1 · F38",spCode:"Request code",spLeave:"Leave my details and request from the factory",
+spNote:"Packs ship from our factory. Leave a request for contents and pricing and our team will get back to you.",
 sp:[["Aesthetics",[["Unique PRP","Platelet-rich plasma preparation system"],["ExoPrime","Autologous plasma processing"],["HighCell CGF","GrowthCell CGF system"]]],
 ["Orthopedics",[["Unique PRP","PRP preparation system"],["HighCell CGF","GrowthCell CGF system"],["BMAC / SVF","Regenerative medicine kits"]]],
 ["Urogynecology",[["Unique PRP","PRP preparation system"],["ExoPrime","Autologous plasma processing"],["HighCell CGF","GrowthCell CGF system"]]],
@@ -794,8 +818,8 @@ feat:[["PRP-, PRF- und CGF-Aufbereitungssysteme","Zytokin- und Polynukleotid-Lö
 ["Biologische Behandlungssysteme für die Urogynäkologie","Regenerative therapeutische Anwendungen","Sterile Verpackung, MDR-CE-konform","Als OEM / Private Label erhältlich"],
 ["PRP-Behandlungen","Exosom-Systeme mit ExoPrime","Polynukleotid-Technologien","Als OEM / Private Label erhältlich"],
 ["Orthopädische Implantattechnologien","Prothesenlösungen","Neueste Produktgruppe im Portfolio","Offen für Vertriebspartner"]],
-spBadge:"Exklusiv für MEDICA-Besucher",spT:"Ihr Starterpaket",spP:"Wählen Sie Ihr Fachgebiet und sehen Sie das empfohlene Paket für den Einstieg.",spBtn:"Paket erstellen",spDoneT:"Ihr Paket ist bereit",spDoneP:"Zeigen Sie diesen Bildschirm an unserem Stand – wir stellen Ihr Paket gemeinsam fertig.",spWhere:"Halle 1 · Stand F38",spWhen:"16.–19. November · MEDICA Düsseldorf",spCode:"Paketcode",spLeave:"Kein Standbesuch möglich? Anfrage senden",
-spNote:"Inhalt und Preise erfahren Sie in Halle 1, Stand F38 – oder hinterlassen Sie eine Anfrage.",
+spBadge:"Exklusiv für MEDICA-Besucher",spT:"Ihr Starterpaket",spP:"Wählen Sie Ihr Fachgebiet und sehen Sie das empfohlene Paket für den Einstieg.",spBtn:"Ab Werk anfordern",spDoneT:"Ihre Paketanfrage wurde erstellt",spDoneP:"Starterpakete werden nicht am Stand ausgegeben, sondern direkt ab Werk versendet. Hinterlassen Sie Ihre Daten – unser Team meldet sich wegen des Versands.",spWhere:"Versand ab Werk",spWhen:"Fragen? Besuchen Sie uns: Halle 1 · F38",spCode:"Anfragecode",spLeave:"Daten hinterlassen und ab Werk anfordern",
+spNote:"Pakete werden ab Werk versendet. Für Inhalt und Preise eine Anfrage hinterlassen – wir melden uns.",
 sp:[["Ästhetik",[["Unique PRP","System zur Aufbereitung von plättchenreichem Plasma"],["ExoPrime","Autologe Plasmaaufbereitung"],["HighCell CGF","GrowthCell-CGF-System"]]],
 ["Orthopädie",[["Unique PRP","PRP-Aufbereitungssystem"],["HighCell CGF","GrowthCell-CGF-System"],["BMAC / SVF","Kits für regenerative Medizin"]]],
 ["Urogynäkologie",[["Unique PRP","PRP-Aufbereitungssystem"],["ExoPrime","Autologe Plasmaaufbereitung"],["HighCell CGF","GrowthCell-CGF-System"]]],
@@ -951,6 +975,14 @@ document.getElementById("team").addEventListener("click",e=>{const b=e.target.cl
   const a=document.getElementById("vdSave");try{a.href=URL.createObjectURL(new Blob([p.vcf],{type:"text/vcard;charset=utf-8"}))}catch(err){a.href="data:text/vcard;charset=utf-8,"+encodeURIComponent(p.vcf)}a.download=p.id+".vcf";VD.showModal()});
 document.getElementById("vdX").addEventListener("click",()=>VD.close());
 VD.addEventListener("click",e=>{if(e.target===VD)VD.close()});
+
+const AEX={"tr": {"aeTag": "Medikal Estetik", "aeT": "Rejeneratif estetik çözümleri", "aeP": "Hekimler ve estetik klinikleri için otolog, steril ve MDR CE uyumlu sistemler.", "uses": [["◐", "Yüz ve cilt", "PRP, CGF ve eksozom uygulamaları"], ["✦", "Saç ve saçlı deri", "Kök hücre bazlı saç restorasyonu kiti"], ["◎", "Cilt kalitesi", "Polinükleotid ve büyüme faktörü sistemleri"], ["⬡", "Klinik iş akışı", "Santrifüj ve tek pakette komple kitler"]], "aeProd": "Estetik ürünlerimiz", "aeBtn": "Estetik Starter Pack'i fabrikadan iste", "aeNote": "Yalnızca sağlık profesyonellerinin kullanımına yöneliktir. Uygulama kararı ve endikasyon hekime aittir."}, "en": {"aeTag": "Medical Aesthetics", "aeT": "Regenerative aesthetic solutions", "aeP": "Autologous, sterile, MDR CE compliant systems for physicians and aesthetic clinics.", "uses": [["◐", "Face & skin", "PRP, CGF and exosome applications"], ["✦", "Hair & scalp", "Stem cell based hair restoration kit"], ["◎", "Skin quality", "Polynucleotide and growth factor systems"], ["⬡", "Clinic workflow", "Centrifuge and complete all-in-one kits"]], "aeProd": "Our aesthetic products", "aeBtn": "Request the aesthetics starter pack from the factory", "aeNote": "For use by healthcare professionals only. Treatment decisions and indications are the physician's responsibility."}, "de": {"aeTag": "Medizinische Ästhetik", "aeT": "Regenerative ästhetische Lösungen", "aeP": "Autologe, sterile, MDR-CE-konforme Systeme für Ärzte und ästhetische Kliniken.", "uses": [["◐", "Gesicht & Haut", "PRP-, CGF- und Exosom-Anwendungen"], ["✦", "Haar & Kopfhaut", "Stammzellbasiertes Haarrestaurations-Kit"], ["◎", "Hautqualität", "Polynukleotid- und Wachstumsfaktor-Systeme"], ["⬡", "Praxisablauf", "Zentrifuge und Komplett-Kits"]], "aeProd": "Unsere Ästhetikprodukte", "aeBtn": "Ästhetik-Starterpaket ab Werk anfordern", "aeNote": "Nur für medizinisches Fachpersonal. Indikation und Behandlungsentscheidung liegen beim Arzt."}};
+for(const k in AEX)Object.assign(T[k],AEX[k]);
+function renderAes(){const d=T[lang];const sec=document.getElementById("aesthetic");sec.querySelector(".aes-hero").style.setProperty("--aebg","url("+IMG[4]+")");
+  document.getElementById("aeUses").innerHTML=d.uses.map(u=>`<div><i>${u[0]}</i><b>${u[1]}</b><span>${u[2]}</span></div>`).join("");
+  const pick=["ExoPrime","Renewa Capilla","Strakin Multicap","S&M PRF+","GrowthCell","Labfuge"];
+  document.getElementById("aeProds").innerHTML=pick.map(n=>{const i=PRODS.findIndex(p=>p.n===n);return i<0?"":`<button type="button" data-b="${i}"><img loading="lazy" src="${PRODS[i].img}" alt=""><span>${n}</span></button>`}).join("");}
+document.getElementById("aeBtn").addEventListener("click",()=>{spSel=0;renderExtra();document.getElementById("spBtn").click();});
 let spSel=0;
 function renderExtra(){
   const d=T[lang];
@@ -982,10 +1014,9 @@ document.getElementById("pdSp").addEventListener("click",()=>{const d=T[lang];co
   setTimeout(()=>{const map={0:0,1:4,2:2,3:3,4:1,5:2};const box=document.querySelectorAll('#ints input')[map[ci]];if(box)box.checked=true;const n=document.getElementById("regCtx");n.textContent=window._regCtx;n.hidden=false;document.querySelector('#rf [name=name]').focus()},80)});
 document.getElementById("spBtn").addEventListener("click",()=>{const d=T[lang];const keys=["AES","ORT","URO","OZN"];
   const code="STR-"+keys[spSel]+"-"+Math.random().toString(36).slice(2,6).toUpperCase();window._spCode=code;
-  const box=document.getElementById("spDone");box.innerHTML=`<div class="pin"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><div><b>${d.spDoneT}</b><p>${d.spDoneP}</p><strong>${d.spWhere}</strong><small>${d.spWhen}</small><span class="code">${d.spCode}: ${code} · ${d.sp[spSel][0]}</span><a href="#oem" id="spLeave">${d.spLeave}</a></div>`;
+  const box=document.getElementById("spDone");box.innerHTML=`<div class="pin"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V9l6 4V9l6 4V5h6v16z"/></svg></div><div><b>${d.spDoneT}</b><p>${d.spDoneP}</p><strong>${d.spWhere}</strong><small>${d.spWhen}</small><span class="code">${d.spCode}: ${code} · ${d.sp[spSel][0]}</span><a href="#oem" id="spLeave">${d.spLeave}</a></div>`;
   box.classList.add("on");box.scrollIntoView({block:"nearest",behavior:"smooth"});});
-document.addEventListener("click",e=>{if(e.target.id!=="spLeave")return;e.preventDefault();const d=T[lang],f=document.getElementById("f");f.type.value="starter";
-  f.msg.value=d.o5+" ("+(window._spCode||"")+") — "+d.sp[spSel][0]+": "+d.sp[spSel][1].map(x=>x[0]).join(", ");location.hash="#oem";setTimeout(()=>f.name.focus(),80)});
+document.addEventListener("click",e=>{if(e.target.id!=="spLeave")return;e.preventDefault();const d=T[lang];window._regCtx=d.o5+" ("+(window._spCode||"")+") — "+d.sp[spSel][0]+": "+d.sp[spSel][1].map(x=>x[0]).join(", ");location.hash="#register";setTimeout(()=>{const n=document.getElementById("regCtx");n.textContent=window._regCtx;n.hidden=false;document.querySelector('#rf [name=name]').focus()},80)});
 const ICONS=[
  '<path d="M9 3h6M10 3v6L5 19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2l-5-10V3M7.5 15h9"/>',
  '<circle cx="9" cy="14" r="4"/><circle cx="16" cy="8" r="3"/><circle cx="17" cy="17" r="2"/>',
@@ -1002,7 +1033,7 @@ function setLang(l){
   document.getElementById("cats").innerHTML=d.cats.map((c,i)=>`<details class="cat"${i===0?" open":""}><summary><span class="ico" style="background:${TINTS[i][0]};color:${TINTS[i][1]}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[i]}</svg></span><span><h3>${c[0]}${i===5?`<span class="new">${d.newL}</span>`:""}</h3><small>${c[1]}</small></span><svg class="chev" viewBox="0 0 24 24" width="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary><div class="body">${c[2]}${i===0?'<div class="tags"><span>PRP Kit</span><span>CGF</span><span>PRF</span><span>Exosome Kit</span></div>':i===2?'<div class="tags"><span>SVF Kit</span><span>BMAC</span><span>Stem cell kit</span></div>':i===1?'<div class="tags"><span>Major ozone</span></div>':""}</div></details>`).join("");
   document.getElementById("svc").innerHTML=d.svc.map(s=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-10"/></svg><div><b>${s[0]}</b><span>${s[1]}</span></div></li>`).join("");
   document.getElementById("ferr").textContent=""; document.getElementById("out").classList.remove("on");
-  renderExtra(); renderOrder(); renderNews(); renderReg(); renderTeam();
+  renderExtra(); renderOrder(); renderNews(); renderReg(); renderTeam(); renderAes();
   try{localStorage.setItem("str-lang",l)}catch(e){}
 }
 document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
