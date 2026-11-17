@@ -454,6 +454,47 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .hero.clean>div:not(.hero-slides),.hero.clean>.tube{opacity:0}
 .hero.clean::after{opacity:0}
 .hero::after{transition:opacity .6s ease}
+/* business card scanner */
+#v-scan [hidden],#regScan[hidden]{display:none!important}
+.scan{margin:14px 16px 0;display:flex;flex-direction:column;gap:10px}
+.scbtn{cursor:pointer;font-size:16.5px;padding:16px}
+.scbtn svg{width:22px;height:22px}
+.scprev{position:relative;border-radius:16px;overflow:hidden;background:#10233A;aspect-ratio:1.75}
+.scprev img{width:100%;height:100%;object-fit:contain;display:block}
+.scprev .bar{position:absolute;left:0;bottom:0;height:4px;background:var(--plasma);width:0;transition:width .3s}
+.scprev.busy::after{content:"";position:absolute;left:0;right:0;height:2px;background:var(--plasma);box-shadow:0 0 12px 3px rgba(233,180,76,.7);animation:scanline 1.6s ease-in-out infinite alternate}
+@keyframes scanline{from{top:6%}to{top:94%}}
+#scF .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}#scF .two input,#scF .two select{min-width:0;width:100%}
+#scF .acts{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.sclist{margin:18px 16px 0;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px}
+.sclist h3{font-size:17px;display:flex;justify-content:space-between;align-items:baseline}
+.sclist h3 small{font-size:13px;color:var(--steel);font-weight:500}
+#scL{list-style:none;display:flex;flex-direction:column;margin:10px 0 4px}
+#scL li{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+#scL li:first-child{border-top:0}
+#scL .who{min-width:0;text-align:left;padding:0}
+#scL .who b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#scL .who small{display:block;font-size:12.5px;color:var(--steel);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#scL .tg{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin-right:4px;background:var(--ice);color:var(--ink2)}
+#scL .tg.hot{background:#F3D6D8;color:var(--rbc)}#scL .tg.sent{background:#DDF3E4;color:#13803B}
+#scL .ia{display:flex;gap:6px}
+#scL .ia a,#scL .ia button{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--ice);border:1px solid var(--line);text-decoration:none}
+#scL .ia svg{width:19px;height:19px}
+.scall{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.scall .btn{font-size:14px;padding:11px 8px}
+.scteam{margin:14px 16px 0;font-size:14px;color:var(--steel)}
+.scteam summary{cursor:pointer;padding:6px 0}
+.scteam form{margin:8px 0 0;flex-direction:row;padding:10px}
+.scteam form input{flex:1}
+.scteam form .btn{width:auto;padding:10px 14px}
+.teamon{background:var(--ink);color:#fff;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600;display:flex;justify-content:space-between;align-items:center;margin:12px 16px 0}
+.teamon button{color:var(--plasma);font-weight:700;font-size:13px}
+.quick a.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:14px;background:linear-gradient(180deg,#24476b,#10233A);color:#fff;border:0}
+.quick a.wide svg{color:var(--plasma);flex:none;width:30px;height:30px}
+.quick a.wide span{color:#cfd9e3}
+.quick a.wide b{display:block;color:#fff;font-size:15.5px}
+.regscan{display:flex;align-items:center;gap:10px;justify-content:center;background:var(--ice);border:1.5px dashed #9fb2c4;border-radius:14px;padding:12px;font-weight:650;text-decoration:none;font-size:14.5px}
+.regscan svg{width:20px;height:20px;color:var(--rbc)}
 </style>
 </head>
 <body>
@@ -492,6 +533,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
         <div class="date"><b>16–19</b><span data-i="nov"></span></div>
         <div><span class="live" data-i="now"></span><h3>MEDICA 2026 · Düsseldorf</h3><p data-i="stand"></p></div>
       </a>
+      <div class="quick" style="margin:12px 16px 0"><a href="#scan" class="wide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M6 9.5h5M6 12.5h7M6 15.5h4"/><circle cx="17" cy="11" r="2"/><path d="M14.5 16a2.7 2.7 0 0 1 5 0"/></svg><div><b data-i="qScT"></b><span data-i="qScP"></span></div></a></div>
 
       <div class="slider" aria-roledescription="carousel">
         <div class="slides" id="slides"></div>
@@ -649,6 +691,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
     <section class="view" id="v-register">
       <div class="sec"><h2 data-i="rgT"></h2><p class="lead" data-i="rgP"></p></div>
       <form id="rf" novalidate>
+        <a class="regscan" href="#scan" id="regScan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M6 9.5h5M6 12.5h7M6 15.5h4"/><circle cx="17" cy="11" r="2"/><path d="M14.5 16a2.7 2.7 0 0 1 5 0"/></svg><span data-i="rgScan"></span></a>
         <p class="regctx" id="regCtx" hidden></p>
         <label><span data-i="fn"></span><input name="name" required autocomplete="name"></label>
         <label><span data-i="rgRole"></span>
@@ -672,6 +715,51 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
         </div>
         <div class="done" id="rdone" hidden><div class="tick">✓</div><b data-i="rgDoneT"></b><p data-i="rgDoneP"></p><strong>Hall 1 · Stand F38</strong></div>
       </form>
+    </section>
+
+
+    <!-- SCAN -->
+    <section class="view" id="v-scan">
+      <div class="sec"><h2 data-i="scT"></h2><p class="lead" data-i="scP"></p></div>
+      <div class="teamon" id="scTeamOn" hidden><span data-i="scTeamOn"></span><button type="button" id="scTeamOff" data-i="scTeamOff"></button></div>
+      <div class="scan">
+        <label class="btn gold scbtn"><input type="file" accept="image/*" capture="environment" id="scIn" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M6 9.5h5M6 12.5h7M6 15.5h4"/><circle cx="17" cy="11" r="2"/><path d="M14.5 16a2.7 2.7 0 0 1 5 0"/></svg><span data-i="scBtn"></span></label>
+        <label class="btn scbtn" style="font-size:14.5px;padding:12px"><input type="file" accept="image/*" id="scIn2" hidden><span data-i="scGal"></span></label>
+        <div class="scprev" id="scPrev" hidden><img id="scImg" alt=""><i class="bar" id="scBar"></i></div>
+        <p class="note" id="scSt" aria-live="polite"></p>
+      </div>
+      <form id="scF" hidden novalidate>
+        <label><span data-i="fn"></span><input name="name" autocomplete="off"></label>
+        <label><span data-i="scTitle"></span><input name="title" autocomplete="off"></label>
+        <label><span data-i="fc"></span><input name="company" autocomplete="off"></label>
+        <div class="two"><label><span data-i="scTel"></span><input name="tel" type="tel" autocomplete="off"></label><label><span data-i="fco"></span><input name="country" autocomplete="off"></label></div>
+        <label><span data-i="fe"></span><input name="email" type="email" autocomplete="off"></label>
+        <label><span data-i="scWeb"></span><input name="web" autocomplete="off"></label>
+        <div class="tmo" hidden>
+          <div class="two"><label><span data-i="scHot"></span><select name="hot"></select></label><label><span data-i="scInt"></span><select name="int"></select></label></div>
+        </div>
+        <label><span data-i="scNote"></span><input name="note" autocomplete="off"></label>
+        <p class="note" id="scErr" role="alert"></p>
+        <div class="acts">
+          <button class="btn gold" type="submit" id="scSave"></button>
+          <button class="btn" type="button" id="scMine" data-i="scMine"></button>
+        </div>
+      </form>
+      <div class="sclist">
+        <h3><span data-i="scMy"></span><small id="scCnt"></small></h3>
+        <p class="note" id="scEmpty" data-i="scEmpty"></p>
+        <ul id="scL"></ul>
+        <div class="scall" id="scAll" hidden>
+          <button class="btn" type="button" id="scVcfAll" data-i="scVcfAll"></button>
+          <button class="btn" type="button" id="scCsv" data-i="scCsv"></button>
+          <button class="btn wa" type="button" id="scSendAll" data-i="scSendAll" style="grid-column:1/-1" hidden></button>
+        </div>
+        <p class="note" style="margin-top:10px" data-i="scPriv"></p>
+      </div>
+      <details class="scteam" id="scTeam"><summary data-i="scTeamQ"></summary>
+        <form id="scTF"><input name="code" type="password" inputmode="text" autocomplete="off" aria-label="code"><button class="btn" type="submit" data-i="scTeamGo"></button></form>
+        <p class="note" id="scTErr" role="alert"></p>
+      </details>
     </section>
 
     <!-- CONTACT -->
@@ -1113,6 +1201,92 @@ const ICONS=[
  '<path d="M12 3l2.2 5.6L20 9.3l-4.4 3.9 1.3 5.8L12 16l-4.9 3 1.3-5.8L4 9.3l5.8-.7z"/>',
  '<path d="M7 3v6a5 5 0 0 0 10 0V3M12 14v7M9 21h6"/>'];
 const TINTS=[["#F8E6BC","#8A5A00"],["#DCEBF5","#1F4F7A"],["#F3D6D8","#A3242E"],["#EADCF0","#6B2F7F"],["#FBE3D0","#9A4A12"],["#DDE6DD","#2F5A3A"]];
+const SCX={tr:{qScT:"Kartvizit tara",qScP:"Fuarda aldığın kartları telefonunda biriktir",rgScan:"Kartvizitini tarat, form kendiliğinden dolsun",scT:"Kartvizit tarayıcı",scP:"Kartı kameraya tutun; bilgiler otomatik okunur. Fuar boyunca aldığınız kartlar bu telefonda birikir, tek dokunuşla rehbere ekleyebilirsiniz.",scBtn:"Kartvizit tara",scGal:"Galeriden seç",scTitle:"Unvan",scTel:"Telefon",scWeb:"Web sitesi",scNote:"Not (nerede tanıştınız, ne konuştunuz)",scHot:"İlgi düzeyi",hots:["🔥 Sıcak","Ilık","Soğuk"],scInt:"İlgilendiği",ints2:["—","OEM / Private Label","Distribütörlük"],scSave:"Kaydet ve rehbere ekle",scSaveT:"Kaydet ve fabrikaya gönder",scMine:"Bu benim kartım — STR'ye kaydol",scMy:"Taramalarım",scEmpty:"Henüz kart yok. İlk kartı tarayın.",scVcfAll:"Tümünü rehbere ekle",scCsv:"Excel (CSV) indir",scSendAll:"Tüm listeyi fabrikaya gönder",scPriv:"Taradığınız kartlar yalnızca bu telefonda saklanır; STR'ye gönderilmez. Kendi kartınızı STR'ye iletmek için “Bu benim kartım” düğmesini kullanın.",scTeamQ:"STR ekibi girişi",scTeamGo:"Aç",scTeamErr:"Kod hatalı.",scTeamOn:"Ekip modu açık — kayıtlar fabrikaya gider",scTeamOff:"Kapat",stLoad:"Okuma modülü yükleniyor…",stRead:"Kart okunuyor…",stOk:"Okundu. Bilgileri kontrol edip kaydedin.",stFail:"Kart okunamadı. Daha aydınlık bir yerde, kartı düz tutarak tekrar deneyin ya da bilgileri elle yazın.",stNet:"Okuma modülü indirilemedi. İnternet bağlantınızı kontrol edin; bilgileri elle de yazabilirsiniz.",scErrN:"En az ad, telefon ya da e-posta girin.",scSaved:"Kaydedildi.",scDel:"Bu kart silinsin mi?",scHead:"STR MEDICA 2026 — stant kaydı (kartvizit)",scBy:"Kaydeden",scWhen:"Tarih",vcfNote:"MEDICA 2026 Düsseldorf",scFrom:"Kartvizitten aktarıldı"},
+en:{qScT:"Scan a business card",qScP:"Keep every card you collect at the fair on your phone",rgScan:"Scan your business card to fill in the form",scT:"Business card scanner",scP:"Hold a card up to the camera and the details are read automatically. Cards you collect during the fair stay on this phone; add them to your contacts in one tap.",scBtn:"Scan business card",scGal:"Choose from gallery",scTitle:"Title",scTel:"Phone",scWeb:"Website",scNote:"Note (where you met, what you discussed)",scHot:"Interest level",hots:["🔥 Hot","Warm","Cold"],scInt:"Interested in",ints2:["—","OEM / private label","Distribution"],scSave:"Save and add to contacts",scSaveT:"Save and send to the factory",scMine:"This is my card — sign up with STR",scMy:"My scans",scEmpty:"No cards yet. Scan your first one.",scVcfAll:"Add all to contacts",scCsv:"Download Excel (CSV)",scSendAll:"Send the whole list to the factory",scPriv:"Scanned cards are stored only on this phone and are not sent to STR. To send your own card to STR, use “This is my card”.",scTeamQ:"STR team sign-in",scTeamGo:"Open",scTeamErr:"Wrong code.",scTeamOn:"Team mode on — entries go to the factory",scTeamOff:"Turn off",stLoad:"Loading the reader…",stRead:"Reading the card…",stOk:"Done. Check the details and save.",stFail:"Couldn't read the card. Try again in better light with the card flat, or type the details.",stNet:"Couldn't download the reader. Check your connection, or type the details.",scErrN:"Enter at least a name, phone or email.",scSaved:"Saved.",scDel:"Delete this card?",scHead:"STR MEDICA 2026 — booth lead (business card)",scBy:"Captured by",scWhen:"Date",vcfNote:"MEDICA 2026 Düsseldorf",scFrom:"Filled from business card"},
+de:{qScT:"Visitenkarte scannen",qScP:"Alle Messe-Visitenkarten auf Ihrem Handy sammeln",rgScan:"Visitenkarte scannen – Formular füllt sich selbst",scT:"Visitenkarten-Scanner",scP:"Halten Sie die Karte vor die Kamera – die Daten werden automatisch erkannt. Gesammelte Karten bleiben auf diesem Handy und lassen sich mit einem Tipp in die Kontakte übernehmen.",scBtn:"Visitenkarte scannen",scGal:"Aus Galerie wählen",scTitle:"Position",scTel:"Telefon",scWeb:"Website",scNote:"Notiz (wo getroffen, worüber gesprochen)",scHot:"Interesse",hots:["🔥 Heiß","Warm","Kalt"],scInt:"Interesse an",ints2:["—","OEM / Private Label","Vertrieb"],scSave:"Speichern und zu Kontakten",scSaveT:"Speichern und an das Werk senden",scMine:"Das ist meine Karte – bei STR registrieren",scMy:"Meine Scans",scEmpty:"Noch keine Karten. Scannen Sie die erste.",scVcfAll:"Alle zu Kontakten",scCsv:"Excel (CSV) laden",scSendAll:"Ganze Liste an das Werk senden",scPriv:"Gescannte Karten werden nur auf diesem Handy gespeichert und nicht an STR gesendet. Ihre eigene Karte senden Sie über „Das ist meine Karte“.",scTeamQ:"Anmeldung STR-Team",scTeamGo:"Öffnen",scTeamErr:"Falscher Code.",scTeamOn:"Team-Modus aktiv – Einträge gehen an das Werk",scTeamOff:"Beenden",stLoad:"Lesemodul wird geladen…",stRead:"Karte wird gelesen…",stOk:"Fertig. Daten prüfen und speichern.",stFail:"Karte nicht lesbar. Bei besserem Licht und flach gehaltener Karte erneut versuchen oder Daten eintippen.",stNet:"Lesemodul konnte nicht geladen werden. Verbindung prüfen oder Daten eintippen.",scErrN:"Bitte mindestens Name, Telefon oder E-Mail angeben.",scSaved:"Gespeichert.",scDel:"Diese Karte löschen?",scHead:"STR MEDICA 2026 – Standkontakt (Visitenkarte)",scBy:"Erfasst von",scWhen:"Datum",vcfNote:"MEDICA 2026 Düsseldorf",scFrom:"Aus Visitenkarte übernommen"}};
+for(const k in SCX)Object.assign(T[k],SCX[k]);
+const SC_KEY="str-scans",SC_TEAM="str-team",SC_CODE="F38";
+let scEdit=null;
+const scGet=()=>{try{return JSON.parse(localStorage.getItem(SC_KEY)||"[]")}catch(e){return []}};
+const scPut=a=>{try{localStorage.setItem(SC_KEY,JSON.stringify(a))}catch(e){}};
+const isTeam=()=>{try{return localStorage.getItem(SC_TEAM)==="1"}catch(e){return false}};
+const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);
+function parseCard(raw){
+  const L=raw.split(/\r?\n/).map(l=>l.replace(/[|_~•·«»]+/g," ").replace(/\s+/g," ").trim()).filter(l=>l.length>1);
+  const all=L.join("\n");
+  const em=(all.match(/[A-Za-z0-9._%+-]+\s?@\s?[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/)||[""])[0].replace(/\s/g,"");
+  const ph=[];(all.match(/\+?\(?\d[\d\s().\/-]{7,}\d/g)||[]).forEach(p=>{const d=p.replace(/\D/g,"");if(d.length>=9&&d.length<=15&&!ph.some(x=>x.replace(/\D/g,"")===d))ph.push(p.replace(/\s+/g," ").trim())});
+  const mob=L.find(l=>/(mob|gsm|cep|handy|cell|whats|^m[:.]|^\+?\s?(90\s?5|49\s?1[5-7]))/i.test(l));let tel=ph[0]||"";if(mob){const m=ph.find(p=>mob.includes(p));if(m)tel=m}
+  const webRe=/\b(?:https?:\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:com\.tr|com|net|org|de|tr|eu|info|health|clinic|io|co|at|ch|uk|fr|it|nl|ae|sa)(?:\/[^\s]*)?\b/i;
+  let web="";for(const l of L){if(l.includes("@"))continue;const m=l.match(webRe);if(m){web=m[0];break}}
+  const CC={"90":"Türkiye","49":"Germany","43":"Austria","41":"Switzerland","44":"United Kingdom","33":"France","39":"Italy","31":"Netherlands","32":"Belgium","34":"Spain","971":"UAE","966":"Saudi Arabia","962":"Jordan","964":"Iraq","20":"Egypt","380":"Ukraine","48":"Poland","30":"Greece","994":"Azerbaijan","7":"Russia","1":"USA"};
+  let country="";const pp=ph.find(p=>/^\+|^00/.test(p));if(pp){const d=pp.replace(/\D/g,"").replace(/^00/,"");for(const n of [3,2,1]){if(CC[d.slice(0,n)]){country=CC[d.slice(0,n)];break}}}
+  if(!country){const cn=all.match(/\b(Türkiye|Turkey|Deutschland|Germany|Österreich|Austria|Schweiz|Switzerland|France|Italia|Italy|Nederland|España|Spain|Polska|Poland|UAE|Dubai|Saudi|Jordan|Iraq|Egypt|Greece)\b/i);if(cn)country=cn[0]}
+  const coRe=/\b(gmbh|ag|ltd|llc|inc|a\.?ş\.?|aş|san\.?|tic\.?|limited|corp|kg|s\.?r\.?l\.?|b\.?v\.?|klinik|kliniği|clinic|clinique|hospital|hastane(si)?|praxis|medical|medikal|pharma|biotech|biyotek\w*|group|grup|holding|cent(er|re)|merkezi?|health|sağlık|labs?|laborator\w*|technolog\w*|teknoloji\w*|solutions|systems)\b/i;
+  const tiRe=/\b(dr|prof|md|phd|uzm|op|doç|manager|müdür\w*|director|direkt\w*|ceo|cto|coo|cfo|owner|founder|sahibi|kurucu\w*|sales|satış|export|ihracat|specialist|uzman\w*|consultant|danışman|head|lead|engineer|mühendis\w*|arzt|ärztin|geschäftsführer\w*|leiter\w*|vertrieb\w*|chief|president|partner|representative|temsilci\w*|surgeon|cerrah\w*|dermatolog\w*|ortoped\w*|physician|hekim\w*|nurse|hemşire|assistant|asistan|coordinator|koordinatör\w*|officer|executive|business|development)\b/i;
+  const cand=L.filter(l=>!l.includes("@")&&(l.replace(/\D/g,"").length<4)&&!webRe.test(l)&&/[A-Za-zÇĞİÖŞÜçğıöşüÄäß]/.test(l)&&!/^(tel|fax|phone|telefon|adres|address|e-?mail|web)\b/i.test(l));
+  const PRE=/^(prof\.?|doç\.?|dr\.?|op\.?|uzm\.?|med\.?|dent\.?|dipl\.?-?|ing\.?|mr\.?|mrs\.?|ms\.?)\s+/i;
+  const strip=l=>{let x=l,o;do{o=x;x=x.replace(PRE,"")}while(x!==o);return x};
+  const isName=l=>{const b=strip(l),w=b.split(" ");return w.length>=2&&w.length<=4&&w.every(x=>/^[A-ZÇĞİÖŞÜÄ][\p{L}'.-]*$/u.test(x))&&!coRe.test(l)&&!tiRe.test(b)&&!/\//.test(l)};
+  let name=cand.find(isName)||"";if(name&&name===name.toUpperCase())name=name.toLowerCase().replace(/(^|\s)\p{L}/gu,c=>c.toUpperCase());
+  const title=cand.find(l=>l!==name&&tiRe.test(l)&&!coRe.test(l))||"";
+  let company=cand.find(l=>l!==name&&l!==title&&coRe.test(l))||"";
+  if(!company&&em){const dm=em.split("@")[1].split(".")[0];if(!/^(gmail|hotmail|yahoo|outlook|icloud|yandex|gmx|web|mail|live|msn|t-online|aol|proton)$/i.test(dm))company=dm.charAt(0).toUpperCase()+dm.slice(1)}
+  return {name,title,company,tel,tel2:ph.find(p=>p!==tel)||"",email:em,web,country};
+}
+
+
+function scVcf(c){const e=s=>String(s||"").replace(/([\;,])/g,"\\$1").replace(/\n/g,"\\n");const nm=(c.name||"").replace(/^((prof|doç|dr|op|uzm|med)\.?\s+)+/i,"").trim().split(" ");const last=nm.length>1?nm.pop():"";const pre=(c.name||"").match(/^((prof|doç|dr|op|uzm|med)\.?\s+)+/i);
+  return ["BEGIN:VCARD","VERSION:3.0",`N:${e(last)};${e(nm.join(" "))};;${e(pre?pre[0].trim():"")};`,`FN:${e(c.name||c.company||c.email)}`,c.company&&`ORG:${e(c.company)}`,c.title&&`TITLE:${e(c.title)}`,c.tel&&`TEL;TYPE=CELL:${c.tel}`,c.email&&`EMAIL;TYPE=INTERNET:${c.email}`,c.web&&`URL:${/^https?:/i.test(c.web)?c.web:"https://"+c.web}`,c.country&&`ADR;TYPE=WORK:;;;;;;${e(c.country)}`,`NOTE:${e(T[lang].vcfNote+(c.note?" — "+c.note:""))}`,"END:VCARD"].filter(Boolean).join("\r\n")}
+function scDownload(name,data,type){const b=new Blob([data],{type});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000)}
+async function scShareOrDownload(name,data,type){try{const f=new File([data],name,{type});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name});return}}catch(e){if(e&&e.name==="AbortError")return}scDownload(name,data,type)}
+function scText(c){const d=T[lang];return `${d.scHead}\n${d.fn}: ${c.name||"-"}\n${d.scTitle}: ${c.title||"-"}\n${d.fc}: ${c.company||"-"}\n${d.scTel}: ${c.tel||"-"}\n${d.fe}: ${c.email||"-"}\n${d.scWeb}: ${c.web||"-"}\n${d.fco}: ${c.country||"-"}${c.hot?`\n${d.scHot}: ${c.hot}`:""}${c.int&&c.int!=="—"?`\n${d.scInt}: ${c.int}`:""}\n${d.scNote}: ${c.note||"-"}\n${d.scWhen}: ${new Date(c.t).toLocaleString(lang)}`}
+function scCsvData(a){const H=["name","title","company","phone","email","web","country","interest_level","interested_in","note","date"];const q=v=>`"${String(v||"").replace(/"/g,'""')}"`;return "﻿"+[H.join(";"),...a.map(c=>[c.name,c.title,c.company,c.tel,c.email,c.web,c.country,c.hot,c.int,c.note,new Date(c.t).toISOString().slice(0,16).replace("T"," ")].map(q).join(";"))].join("\r\n")}
+function renderScan(){const d=T[lang];const F=document.getElementById("scF");if(!F)return;const tm=isTeam();
+  document.getElementById("scTeamOn").hidden=!tm;F.querySelector(".tmo").hidden=!tm;document.getElementById("scSendAll").hidden=!tm;document.getElementById("scTeam").hidden=tm;
+  document.getElementById("scSave").textContent=tm?d.scSaveT:d.scSave;
+  F.hot.innerHTML=d.hots.map(h=>`<option>${h}</option>`).join("");F.hot.selectedIndex=1;
+  F.int.innerHTML=[d.ints2[0],...PRODS.map(p=>p.n),...d.ints2.slice(1)].map(h=>`<option>${esc(h)}</option>`).join("");
+  scList()}
+function scList(){const d=T[lang],a=scGet(),ic=(p)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">${p}</svg>`;
+  document.getElementById("scCnt").textContent=a.length?a.length:"";document.getElementById("scEmpty").hidden=!!a.length;document.getElementById("scAll").hidden=!a.length;
+  document.getElementById("scL").innerHTML=a.slice().reverse().map(c=>`<li data-id="${c.id}"><button class="who" type="button" data-act="edit"><b>${esc(c.name||c.company||c.email||"—")}</b><small>${c.sent?`<span class="tg sent">✓ STR</span>`:""}${c.hot&&/🔥/.test(c.hot)?`<span class="tg hot">${esc(c.hot)}</span>`:""}${esc([c.title,c.company].filter(Boolean).join(" · ")||c.tel)}</small></button><div class="ia"><button type="button" data-act="vcf" aria-label="vCard">${ic('<circle cx="10" cy="8" r="4"/><path d="M3 21a7 7 0 0 1 14 0M19 8v6M16 11h6"/>')}</button>${c.tel?`<a href="https://wa.me/${c.tel.replace(/\D/g,"").replace(/^0/,"90")}" target="_blank" rel="noopener" aria-label="WhatsApp">${ic('<path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/>')}</a>`:""}<button type="button" data-act="del" aria-label="delete">${ic('<path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/>')}</button></div></li>`).join("")}
+function scFill(c){const F=document.getElementById("scF");["name","title","company","tel","country","email","web","note"].forEach(k=>F[k].value=c[k]||"");if(c.hot)F.hot.value=c.hot;if(c.int)F.int.value=c.int;F.hidden=false;document.getElementById("scErr").textContent=""}
+function scRead(){const F=document.getElementById("scF"),o={};["name","title","company","tel","country","email","web","note"].forEach(k=>o[k]=F[k].value.trim());if(isTeam()){o.hot=F.hot.value;o.int=F.int.value}return o}
+let ocrW=null,ocrP=null;
+function scLoad(){if(ocrP)return ocrP;ocrP=new Promise((res,rej)=>{if(window.Tesseract)return res();const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js";s.onload=res;s.onerror=rej;document.head.appendChild(s)}).then(()=>Tesseract.createWorker(["eng","deu","tur"],1,{logger:m=>{if(m.status==="recognizing text")document.getElementById("scBar").style.width=Math.round(30+m.progress*70)+"%"}})).then(w=>{ocrW=w;return w}).catch(e=>{ocrP=null;throw e});return ocrP}
+async function scPrep(file){const url=URL.createObjectURL(file);const img=new Image();img.src=url;await img.decode();const k=Math.min(1,1800/Math.max(img.naturalWidth,img.naturalHeight));const c=document.createElement("canvas");c.width=Math.round(img.naturalWidth*k);c.height=Math.round(img.naturalHeight*k);const x=c.getContext("2d");x.filter="grayscale(1) contrast(1.35)";x.drawImage(img,0,0,c.width,c.height);return {url,canvas:c}}
+async function scHandle(file){if(!file)return;const d=T[lang],st=document.getElementById("scSt"),pv=document.getElementById("scPrev"),bar=document.getElementById("scBar");scEdit=null;
+  let pr;try{pr=await scPrep(file)}catch(e){st.textContent=d.stFail;scFill({});return}
+  document.getElementById("scImg").src=pr.url;pv.hidden=false;pv.classList.add("busy");bar.style.width="8%";st.textContent=d.stLoad;
+  document.getElementById("scF").hidden=true;
+  try{const w=await scLoad();bar.style.width="30%";st.textContent=d.stRead;const r=await w.recognize(pr.canvas);const c=parseCard(r.data.text||"");
+    scFill(c);st.textContent=(c.name||c.email||c.tel)?d.stOk:d.stFail;}
+  catch(e){st.textContent=ocrW?d.stFail:d.stNet;scFill({})}
+  finally{pv.classList.remove("busy");bar.style.width="100%";setTimeout(()=>{document.getElementById("scF").scrollIntoView({behavior:"smooth",block:"start"})},150)}}
+["scIn","scIn2"].forEach(id=>document.getElementById(id).addEventListener("change",e=>{scHandle(e.target.files[0]);e.target.value=""}));
+document.querySelector('a[href="#scan"].wide')?.addEventListener("click",()=>{scLoad().catch(()=>{})});
+document.getElementById("scF").addEventListener("submit",e=>{e.preventDefault();const d=T[lang],o=scRead();
+  if(!o.name&&!o.tel&&!o.email){document.getElementById("scErr").textContent=d.scErrN;return}
+  const a=scGet();let c;if(scEdit){c=a.find(x=>x.id===scEdit);Object.assign(c,o)}else{c={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),t:Date.now(),...o};a.push(c)}
+  if(isTeam()){c.sent=true;c.team=true;scPut(a);window.open("https://wa.me/905301227577?text="+encodeURIComponent(scText(c)),"_blank","noopener")}
+  else{scPut(a);const v=scVcf(c);const sv=document.getElementById("vdSave");scDownload((c.name||"contact").replace(/[^\p{L}\p{N}]+/gu,"_")+".vcf",v,"text/vcard;charset=utf-8")}
+  scEdit=null;e.target.reset();e.target.hidden=true;document.getElementById("scPrev").hidden=true;document.getElementById("scSt").textContent=d.scSaved;scList();
+  document.querySelector(".sclist").scrollIntoView({behavior:"smooth",block:"start"})});
+document.getElementById("scMine").addEventListener("click",()=>{const o=scRead(),R=document.getElementById("rf"),d=T[lang];
+  R.name.value=o.name;R.company.value=o.company;R.country.value=o.country;R.tel.value=o.tel;R.email.value=o.email;
+  window._regCtx=d.scFrom+(o.title?" — "+o.title:"");location.hash="#register";setTimeout(()=>{const n=document.getElementById("regCtx");n.textContent=window._regCtx;n.hidden=false;R.kvkk.focus()},80)});
+document.getElementById("scL").addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(!b)return;const id=b.closest("li").dataset.id,a=scGet(),c=a.find(x=>x.id===id);if(!c)return;
+  if(b.dataset.act==="vcf")scDownload((c.name||"contact").replace(/[^\p{L}\p{N}]+/gu,"_")+".vcf",scVcf(c),"text/vcard;charset=utf-8");
+  else if(b.dataset.act==="del"){if(confirm(T[lang].scDel)){scPut(a.filter(x=>x.id!==id));scList()}}
+  else if(b.dataset.act==="edit"){scEdit=id;scFill(c);document.getElementById("scPrev").hidden=true;document.getElementById("scF").scrollIntoView({behavior:"smooth",block:"start"})}});
+document.getElementById("scVcfAll").addEventListener("click",()=>scShareOrDownload("MEDICA2026_kartvizitler.vcf",scGet().map(scVcf).join("\r\n"),"text/vcard"));
+document.getElementById("scCsv").addEventListener("click",()=>scShareOrDownload("MEDICA2026_kartvizitler.csv",scCsvData(scGet()),"text/csv"));
+document.getElementById("scSendAll").addEventListener("click",async()=>{const a=scGet();await scShareOrDownload("STR_MEDICA2026_stant_kayitlari.csv",scCsvData(a),"text/csv")});
+document.getElementById("scTF").addEventListener("submit",e=>{e.preventDefault();const ok=e.target.code.value.trim().toUpperCase()===SC_CODE;document.getElementById("scTErr").textContent=ok?"":T[lang].scTeamErr;if(ok){try{localStorage.setItem(SC_TEAM,"1")}catch(_){}e.target.reset();renderScan()}});
+document.getElementById("scTeamOff").addEventListener("click",()=>{try{localStorage.removeItem(SC_TEAM)}catch(_){}renderScan()});
+addEventListener("hashchange",()=>{if(location.hash==="#scan")scLoad().catch(()=>{})});
+
 let lang="tr";
 function setLang(l){
   lang=l; const d=T[l]; document.documentElement.lang=l;
@@ -1121,12 +1295,12 @@ function setLang(l){
   document.getElementById("cats").innerHTML=d.cats.map((c,i)=>`<details class="cat"${i===0?" open":""}><summary><span class="ico" style="background:${TINTS[i][0]};color:${TINTS[i][1]}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[i]}</svg></span><span><h3>${c[0]}${i===5?`<span class="new">${d.newL}</span>`:""}</h3><small>${c[1]}</small></span><svg class="chev" viewBox="0 0 24 24" width="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary><div class="body">${c[2]}${i===0?'<div class="tags"><span>PRP Kit</span><span>CGF</span><span>PRF</span><span>Exosome Kit</span></div>':i===2?'<div class="tags"><span>SVF Kit</span><span>BMAC</span><span>Stem cell kit</span></div>':i===1?'<div class="tags"><span>Major ozone</span></div>':""}</div></details>`).join("");
   document.getElementById("svc").innerHTML=d.svc.map(s=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-10"/></svg><div><b>${s[0]}</b><span>${s[1]}</span></div></li>`).join("");
   document.getElementById("ferr").textContent=""; document.getElementById("out").classList.remove("on");
-  renderExtra(); renderOrder(); renderNews(); renderReg(); renderTeam(); renderAes(); renderOf();
+  renderExtra(); renderOrder(); renderNews(); renderReg(); renderTeam(); renderAes(); renderOf(); renderScan();
   try{localStorage.setItem("str-lang",l)}catch(e){}
 }
 document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
 function route(){
-  const v=(location.hash||"#home").slice(1); const ok=["home","products","order","register","oem","contact"].includes(v)?v:"home";
+  const v=(location.hash||"#home").slice(1); const ok=["home","products","order","register","oem","contact","scan"].includes(v)?v:"home";
   document.querySelectorAll(".view").forEach(s=>s.classList.toggle("on",s.id==="v-"+ok));
   document.querySelectorAll("nav.tabs a").forEach(a=>a.toggleAttribute("aria-current",a.dataset.v===ok)||0);
   document.querySelectorAll("nav.tabs a").forEach(a=>{if(a.dataset.v===ok)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
