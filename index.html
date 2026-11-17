@@ -449,6 +449,12 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .hero-slides i{position:absolute;inset:0;background-size:cover;background-position:var(--px,60%) center;opacity:0;transition:opacity 1.2s ease;transform:scale(1.04)}
 .hero-slides i.on{opacity:1;transform:scale(1);transition:opacity 1.2s ease,transform 6s ease-out}
 @media (prefers-reduced-motion:reduce){.hero-slides i{transition:none}}
+#pdImg.box.wide{aspect-ratio:16/9;object-fit:cover;background:#10233A}
+.hero-slides i.clean{background-size:contain;background-repeat:no-repeat;background-color:#0E2440;background-position:center}
+.hero>div,.hero>.tube{transition:opacity .6s ease}
+.hero.clean>div:not(.hero-slides),.hero.clean>.tube{opacity:0}
+.hero.clean::after{opacity:0}
+.hero::after{transition:opacity .6s ease}
 </style>
 </head>
 <body>
@@ -466,7 +472,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
   <main>
     <!-- HOME -->
     <section class="view" id="v-home">
-      <div class="hero"><video class="hero-video" muted loop playsinline preload="metadata" poster="media/hero_poster.jpg" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"></video><div class="hero-slides" aria-hidden="true"><i style="background-image:url(media/gc1.jpg);--px:52%"></i><i style="background-image:url(media/gc2.jpg);--px:68%"></i><i style="background-image:url(media/gc3.jpg);--px:62%"></i><i style="background-image:url(media/gc4.jpg);--px:58%"></i></div>
+      <div class="hero"><video class="hero-video" muted loop playsinline preload="metadata" poster="media/hero_poster.jpg" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"></video><div class="hero-slides" aria-hidden="true"><i style="background-image:url(media/gc1.jpg);--px:52%"></i><i style="background-image:url(media/gc2.jpg);--px:68%"></i><i style="background-image:url(media/gc3.jpg);--px:62%"></i><i style="background-image:url(media/gc4.jpg);--px:58%"></i><i class="clean" style="background-image:url(media/highcell.jpg)"></i></div>
         <div>
           <h1 data-i="heroT"></h1>
           <p data-i="heroP"></p>
@@ -821,7 +827,7 @@ t1:"Start",t2:"Produkte",t3:"OEM",t4:"Akademie",t5:"Kontakt",qrT:"App aufs Handy
 };
 
 const IMG=["img/09bdebd1f8.jpg", "img/1ef1927c85.jpg", "img/138376d81e.jpg", "img/837304808c.jpg", "img/c1179adb52.jpg", "img/906539792e.jpg"];
-const PRODS=[{"n": "Strakin Multicap", "img": "img/46c80dcfa4.jpg", "c": 0, "d": {"tr": "Tüm bileşenleri tek pakette, komple PRP kiti.", "en": "Complete platelet-rich plasma kit, all components in one pack.", "de": "Komplettes PRP-Kit, alle Komponenten in einer Packung."}}, {"n": "S&M Monocap", "img": "img/92297e029f.jpg", "c": 0, "d": {"tr": "Steril PRP tüpü.", "en": "Sterile PRP tube.", "de": "Steriles PRP-Röhrchen."}}, {"n": "GrowthCell", "img": "img/growthcell_hero.jpg", "c": 0, "d": {"tr": "Trombosit aktivasyon sistemi (CGF).", "en": "Platelet activation system (CGF).", "de": "Thrombozyten-Aktivierungssystem (CGF)."}}, {"n": "ExoPrime", "img": "img/90d99c8a0d.jpg", "c": 4, "d": {"tr": "Otolog eksozom konsantresi · doku, saç derisi, kas-iskelet.", "en": "Autologous exosome concentrate · tissue, scalp, MSK.", "de": "Autologes Exosomkonzentrat · Gewebe, Kopfhaut, MSK."}}, {"n": "Renewa Capilla", "img": "img/3f691ac34f.jpg", "c": 4, "d": {"tr": "Kök hücre bazlı saç restorasyon kiti.", "en": "Stem cell based hair restoration kit.", "de": "Stammzellbasiertes Haarrestaurations-Kit."}}, {"n": "Stemmex", "img": "img/6b27a09d84.jpg", "c": 2, "d": {"tr": "Kemik iliği kök hücre kiti.", "en": "Bone marrow stem cell kit.", "de": "Knochenmark-Stammzell-Kit."}}, {"n": "S&M PRF+", "img": "img/4a92c36fba.jpg", "c": 0, "d": {"tr": "PRF hazırlama kiti.", "en": "PRF preparation kit.", "de": "PRF-Aufbereitungskit."}}, {"n": "STR O3zone", "img": "img/a480df4d13.jpg", "c": 1, "d": {"tr": "Majör ozon terapisi için ozon şişesi.", "en": "Ozone bottle for major ozone therapy.", "de": "Ozonflasche für die große Ozontherapie."}}, {"n": "Labfuge", "img": "img/b940bec91a.jpg", "c": 0, "d": {"tr": "PRP, PRF, CGF ve SVF için santrifüj.", "en": "Centrifuge for PRP, PRF, CGF and SVF.", "de": "Zentrifuge für PRP, PRF, CGF und SVF."}}];
+const PRODS=[{"n": "HighCell", "img": "img/highcell.jpg", "c": 0, "wide": true, "d": {"tr": "PRP tüpü: üstün ayrışma, kolay buffy coat toplama, yüksek trombosit konsantrasyonu.", "en": "PRP tube: superior separation, easy buffy coat collection, high platelet concentration.", "de": "PRP-Röhrchen: hervorragende Trennung, einfache Buffy-Coat-Gewinnung, hohe Thrombozytenkonzentration."}, "f": {"tr": ["Üstün ayrışma", "Kolay buffy coat toplama", "Yüksek trombosit konsantrasyonu", "Plazma, buffy coat ve eritrosit katmanlarının net ayrımı"], "en": ["Superior separation", "Easy buffy coat collection", "High platelet concentration", "Clear separation of plasma, buffy coat and red cell layers"], "de": ["Hervorragende Trennung", "Einfache Buffy-Coat-Gewinnung", "Hohe Thrombozytenkonzentration", "Klare Trennung von Plasma, Buffy Coat und Erythrozyten"]}}, {"n": "Strakin Multicap", "img": "img/46c80dcfa4.jpg", "c": 0, "d": {"tr": "Tüm bileşenleri tek pakette, komple PRP kiti.", "en": "Complete platelet-rich plasma kit, all components in one pack.", "de": "Komplettes PRP-Kit, alle Komponenten in einer Packung."}}, {"n": "S&M Monocap", "img": "img/92297e029f.jpg", "c": 0, "d": {"tr": "Steril PRP tüpü.", "en": "Sterile PRP tube.", "de": "Steriles PRP-Röhrchen."}}, {"n": "GrowthCell", "img": "img/growthcell_hero.jpg", "c": 0, "d": {"tr": "Trombosit aktivasyon tüpü.", "en": "Platelet activation tube.", "de": "Thrombozyten-Aktivierungsröhrchen."}}, {"n": "ExoPrime", "img": "img/90d99c8a0d.jpg", "c": 4, "d": {"tr": "Otolog eksozom konsantresi · doku, saç derisi, kas-iskelet.", "en": "Autologous exosome concentrate · tissue, scalp, MSK.", "de": "Autologes Exosomkonzentrat · Gewebe, Kopfhaut, MSK."}}, {"n": "Renewa Capilla", "img": "img/3f691ac34f.jpg", "c": 4, "d": {"tr": "Kök hücre bazlı saç restorasyon kiti.", "en": "Stem cell based hair restoration kit.", "de": "Stammzellbasiertes Haarrestaurations-Kit."}}, {"n": "Stemmex", "img": "img/6b27a09d84.jpg", "c": 2, "d": {"tr": "Kemik iliği kök hücre kiti.", "en": "Bone marrow stem cell kit.", "de": "Knochenmark-Stammzell-Kit."}}, {"n": "S&M PRF+", "img": "img/4a92c36fba.jpg", "c": 0, "d": {"tr": "PRF hazırlama kiti.", "en": "PRF preparation kit.", "de": "PRF-Aufbereitungskit."}}, {"n": "STR O3zone", "img": "img/a480df4d13.jpg", "c": 1, "d": {"tr": "Majör ozon terapisi için ozon şişesi.", "en": "Ozone bottle for major ozone therapy.", "de": "Ozonflasche für die große Ozontherapie."}}, {"n": "Labfuge", "img": "img/b940bec91a.jpg", "c": 0, "d": {"tr": "PRP, PRF, CGF ve SVF için santrifüj.", "en": "Centrifuge for PRP, PRF, CGF and SVF.", "de": "Zentrifuge für PRP, PRF, CGF und SVF."}}];
 const X={
 tr:{railT:"Ürünlerimiz",all:"Tümü",close:"Kapat",pdSp:"Paket öner",o5:"Paket talebi",
 feat:[["PRP, PRF ve CGF hazırlama sistemleri","Sitokin ve polinükleotid çözümleri","Steril ambalaj, MDR CE uyumlu üretim","OEM / Private Label ile kendi markanızla"],
@@ -832,13 +838,13 @@ feat:[["PRP, PRF ve CGF hazırlama sistemleri","Sitokin ve polinükleotid çöz�
 ["Ortopedik implant teknolojileri","Protez çözümleri","Portföyün en yeni ürün grubu","Distribütörlük başvurusuna açık"]],
 spBadge:"MEDICA katılımcılarına özel",pk:[["Tanışma Paketi","İlk deneyim için küçük set"],["İlk Sipariş Paketi","Düzenli kullanıma başlangıç"],["Klinik Starter Kit","Klinik kurulumu için kapsamlı set"]],pkLbl:"Paket türü",spLbl:"Branş",spT:"Size uygun paket",spP:"Branşınızı seçin, uygulamaya başlamanız için önerdiğimiz paketi görün.",spBtn:"Fabrikaya gönder",spDoneT:"Talebiniz fabrikaya hazır",spDoneP:"Paketler standdan verilmez; doğrudan fabrikamızdan gönderilir. Bilgilerinizi bırakın, ekibimiz gönderim için sizinle iletişime geçsin.",spWhere:"Fabrikadan gönderim",spWhen:"Sorularınız için standımız: Hall 1 · F38",spCode:"Talep kodu",spLeave:"Bilgilerimi bırak, fabrikaya gönder",
 spNote:"Paketler fabrikamızdan gönderilir. İçerik ve fiyat için talep bırakın, ekibimiz dönüş yapsın.",
-sp:[["Estetik",[["Unique PRP","Trombositten zengin plazma hazırlama sistemi"],["ExoPrime","Otolog plazma işleme"],["HighCell CGF","GrowthCell CGF sistemi"]]],
-["Ortopedi",[["Unique PRP","PRP hazırlama sistemi"],["HighCell CGF","GrowthCell CGF sistemi"],["BMAC / SVF","Rejeneratif tıp kitleri"]]],
-["Ürojinekoloji",[["Unique PRP","PRP hazırlama sistemi"],["ExoPrime","Otolog plazma işleme"],["HighCell CGF","GrowthCell CGF sistemi"]]],
-["Ozon terapi",[["STR O3zone","Ozon terapi şişesi"],["Unique PRP","PRP hazırlama sistemi"],["HighCell CGF","GrowthCell CGF sistemi"]]]],
+sp:[["Estetik",[["Unique PRP","Trombositten zengin plazma hazırlama sistemi"],["ExoPrime","Otolog plazma işleme"],["HighCell","PRP tüpü"]]],
+["Ortopedi",[["Unique PRP","PRP hazırlama sistemi"],["HighCell","PRP tüpü"],["BMAC / SVF","Rejeneratif tıp kitleri"]]],
+["Ürojinekoloji",[["Unique PRP","PRP hazırlama sistemi"],["ExoPrime","Otolog plazma işleme"],["HighCell","PRP tüpü"]]],
+["Ozon terapi",[["STR O3zone","Ozon terapi şişesi"],["Unique PRP","PRP hazırlama sistemi"],["HighCell","PRP tüpü"]]]],
 exT:"Çorum'dan dünyaya",exP:"60'tan fazla ülkeye ihracat. Distribütörlük, OEM ve Private Label için ihracat ekibimizle doğrudan görüşün.",exCall:"İhracat hattı",
 inT:"İnovasyon",inP:"Kendi Ar-Ge ve üretim altyapımızla geliştirdiğimiz yeni nesil çözümler.",
-inn:[["Exo","ExoPrime","Otolog plazma işleme ve PRP kaynaklı eksozom teknolojisi"],["CGF","HighCell GrowthCell CGF","Yeni nesil konsantre büyüme faktörü sistemi"],["O₃","STR O3zone","Majör ozon terapi için profesyonel şişe sistemi"],["YENİ","Ortopedik implantlar","Portföye yeni eklenen protez teknolojileri"],["TV","STR Science TV","Bilimsel makaleler ve eğitim videoları"]],
+inn:[["Exo","ExoPrime","Otolog plazma işleme ve PRP kaynaklı eksozom teknolojisi"],["PRP","HighCell PRP Tüpü","Üstün ayrışma ve kolay buffy coat toplama"],["O₃","STR O3zone","Majör ozon terapi için profesyonel şişe sistemi"],["YENİ","Ortopedik implantlar","Portföye yeni eklenen protez teknolojileri"],["TV","STR Science TV","Bilimsel makaleler ve eğitim videoları"]],
 phEx:"İhracat / Export",phSa:"Satış",phFa:"Fabrika",hours:"Pzt–Cuma 08:00–18:00"},
 en:{railT:"Products",all:"See all",close:"Close",pdSp:"Suggest a pack",o5:"Pack request",
 feat:[["PRP, PRF and CGF preparation systems","Cytokine and polynucleotide solutions","Sterile packaging, MDR CE compliant","Available as OEM / private label"],
@@ -849,13 +855,13 @@ feat:[["PRP, PRF and CGF preparation systems","Cytokine and polynucleotide solut
 ["Orthopedic implant technologies","Prosthesis solutions","Newest product group in our portfolio","Open for distribution partners"]],
 spBadge:"For MEDICA visitors",pk:[["Welcome Pack","A small set to get to know us"],["First Order Pack","Start of regular use"],["Clinic Starter Kit","Comprehensive set for clinic setup"]],pkLbl:"Pack type",spLbl:"Specialty",spT:"Your pack",spP:"Pick your specialty to see the pack we recommend to get started.",spBtn:"Send to factory",spDoneT:"Your request is ready for the factory",spDoneP:"Packs are not handed out at the stand; they are shipped directly from our factory. Leave your details and our team will contact you about shipping.",spWhere:"Shipped from the factory",spWhen:"Questions? Visit us at Hall 1 · F38",spCode:"Request code",spLeave:"Leave my details, send to factory",
 spNote:"Packs ship from our factory. Leave a request for contents and pricing and our team will get back to you.",
-sp:[["Aesthetics",[["Unique PRP","Platelet-rich plasma preparation system"],["ExoPrime","Autologous plasma processing"],["HighCell CGF","GrowthCell CGF system"]]],
-["Orthopedics",[["Unique PRP","PRP preparation system"],["HighCell CGF","GrowthCell CGF system"],["BMAC / SVF","Regenerative medicine kits"]]],
-["Urogynecology",[["Unique PRP","PRP preparation system"],["ExoPrime","Autologous plasma processing"],["HighCell CGF","GrowthCell CGF system"]]],
-["Ozone therapy",[["STR O3zone","Ozone therapy bottle"],["Unique PRP","PRP preparation system"],["HighCell CGF","GrowthCell CGF system"]]]],
+sp:[["Aesthetics",[["Unique PRP","Platelet-rich plasma preparation system"],["ExoPrime","Autologous plasma processing"],["HighCell","PRP tube"]]],
+["Orthopedics",[["Unique PRP","PRP preparation system"],["HighCell","PRP tube"],["BMAC / SVF","Regenerative medicine kits"]]],
+["Urogynecology",[["Unique PRP","PRP preparation system"],["ExoPrime","Autologous plasma processing"],["HighCell","PRP tube"]]],
+["Ozone therapy",[["STR O3zone","Ozone therapy bottle"],["Unique PRP","PRP preparation system"],["HighCell","PRP tube"]]]],
 exT:"From Çorum to the world",exP:"Exporting to more than 60 countries. Talk directly to our export team about distribution, OEM and private label.",exCall:"Export line",
 inT:"Innovation",inP:"Next-generation solutions built on our own R&D and production.",
-inn:[["Exo","ExoPrime","Autologous plasma processing and PRP-derived exosome technology"],["CGF","HighCell GrowthCell CGF","Next-generation concentrated growth factor system"],["O₃","STR O3zone","Professional bottle system for major ozone therapy"],["NEW","Orthopedic implants","Prosthesis technologies newly added to the portfolio"],["TV","STR Science TV","Scientific articles and training videos"]],
+inn:[["Exo","ExoPrime","Autologous plasma processing and PRP-derived exosome technology"],["PRP","HighCell PRP Tube","Superior separation and easy buffy coat collection"],["O₃","STR O3zone","Professional bottle system for major ozone therapy"],["NEW","Orthopedic implants","Prosthesis technologies newly added to the portfolio"],["TV","STR Science TV","Scientific articles and training videos"]],
 phEx:"Export",phSa:"Sales",phFa:"Factory",hours:"Mon–Fri 08:00–18:00"},
 de:{railT:"Produkte",all:"Alle",close:"Schließen",pdSp:"Paket vorschlagen",o5:"Paketanfrage",
 feat:[["PRP-, PRF- und CGF-Aufbereitungssysteme","Zytokin- und Polynukleotid-Lösungen","Sterile Verpackung, MDR-CE-konform","Als OEM / Private Label erhältlich"],
@@ -866,13 +872,13 @@ feat:[["PRP-, PRF- und CGF-Aufbereitungssysteme","Zytokin- und Polynukleotid-Lö
 ["Orthopädische Implantattechnologien","Prothesenlösungen","Neueste Produktgruppe im Portfolio","Offen für Vertriebspartner"]],
 spBadge:"Exklusiv für MEDICA-Besucher",pk:[["Kennenlernpaket","Kleines Set zum Kennenlernen"],["Erstbestellungspaket","Einstieg in die regelmäßige Nutzung"],["Klinik-Starterkit","Umfassendes Set für den Praxisstart"]],pkLbl:"Paketart",spLbl:"Fachgebiet",spT:"Ihr Paket",spP:"Wählen Sie Ihr Fachgebiet und sehen Sie das empfohlene Paket für den Einstieg.",spBtn:"An das Werk senden",spDoneT:"Ihre Anfrage ist bereit für das Werk",spDoneP:"Pakete werden nicht am Stand ausgegeben, sondern direkt ab Werk versendet. Hinterlassen Sie Ihre Daten – unser Team meldet sich wegen des Versands.",spWhere:"Versand ab Werk",spWhen:"Fragen? Besuchen Sie uns: Halle 1 · F38",spCode:"Anfragecode",spLeave:"Daten hinterlassen, an das Werk senden",
 spNote:"Pakete werden ab Werk versendet. Für Inhalt und Preise eine Anfrage hinterlassen – wir melden uns.",
-sp:[["Ästhetik",[["Unique PRP","System zur Aufbereitung von plättchenreichem Plasma"],["ExoPrime","Autologe Plasmaaufbereitung"],["HighCell CGF","GrowthCell-CGF-System"]]],
-["Orthopädie",[["Unique PRP","PRP-Aufbereitungssystem"],["HighCell CGF","GrowthCell-CGF-System"],["BMAC / SVF","Kits für regenerative Medizin"]]],
-["Urogynäkologie",[["Unique PRP","PRP-Aufbereitungssystem"],["ExoPrime","Autologe Plasmaaufbereitung"],["HighCell CGF","GrowthCell-CGF-System"]]],
-["Ozontherapie",[["STR O3zone","Ozontherapieflasche"],["Unique PRP","PRP-Aufbereitungssystem"],["HighCell CGF","GrowthCell-CGF-System"]]]],
+sp:[["Ästhetik",[["Unique PRP","System zur Aufbereitung von plättchenreichem Plasma"],["ExoPrime","Autologe Plasmaaufbereitung"],["HighCell","PRP-Röhrchen"]]],
+["Orthopädie",[["Unique PRP","PRP-Aufbereitungssystem"],["HighCell","PRP-Röhrchen"],["BMAC / SVF","Kits für regenerative Medizin"]]],
+["Urogynäkologie",[["Unique PRP","PRP-Aufbereitungssystem"],["ExoPrime","Autologe Plasmaaufbereitung"],["HighCell","PRP-Röhrchen"]]],
+["Ozontherapie",[["STR O3zone","Ozontherapieflasche"],["Unique PRP","PRP-Aufbereitungssystem"],["HighCell","PRP-Röhrchen"]]]],
 exT:"Von Çorum in die Welt",exP:"Export in über 60 Länder. Sprechen Sie direkt mit unserem Exportteam über Vertrieb, OEM und Private Label.",exCall:"Export-Hotline",
 inT:"Innovation",inP:"Lösungen der nächsten Generation aus eigener Forschung und Produktion.",
-inn:[["Exo","ExoPrime","Autologe Plasmaaufbereitung und PRP-basierte Exosom-Technologie"],["CGF","HighCell GrowthCell CGF","Konzentriertes Wachstumsfaktor-System der nächsten Generation"],["O₃","STR O3zone","Professionelles Flaschensystem für die große Ozontherapie"],["NEU","Orthopädische Implantate","Neu ins Portfolio aufgenommene Prothesentechnologien"],["TV","STR Science TV","Wissenschaftliche Artikel und Schulungsvideos"]],
+inn:[["Exo","ExoPrime","Autologe Plasmaaufbereitung und PRP-basierte Exosom-Technologie"],["PRP","HighCell PRP-Röhrchen","Hervorragende Trennung, einfache Buffy-Coat-Gewinnung"],["O₃","STR O3zone","Professionelles Flaschensystem für die große Ozontherapie"],["NEU","Orthopädische Implantate","Neu ins Portfolio aufgenommene Prothesentechnologien"],["TV","STR Science TV","Wissenschaftliche Artikel und Schulungsvideos"]],
 phEx:"Export",phSa:"Vertrieb",phFa:"Werk",hours:"Mo–Fr 08:00–18:00"}};
 for(const k in X)Object.assign(T[k],X[k]);
 
@@ -907,7 +913,7 @@ news:[["Beitrag","Fortlaufende Innovation in der regenerativen Medizintechnik","
 for(const k in NX)Object.assign(T[k],NX[k]);
 let slI=0,slT=null;
 function renderNews(){const d=T[lang],booth=document.querySelector(".booth").src;
-  const bg={acad:IMG[0],medica:booth,sp:IMG[4],kit:PRODS[0].img};
+  const bg={acad:IMG[0],medica:booth,sp:IMG[4],kit:(PRODS.find(p=>p.n==="Strakin Multicap")||PRODS[0]).img};
   document.getElementById("slides").innerHTML=d.sl.map((x,i)=>`<a class="slide ${x[0]==="acad"?"acad":""} ${x[0]==="kit"?"kit":""}" href="${x[5]}" ${x[0]==="kit"?'data-pk="2"':""} style="${x[0]==="acad"?`--bg:url(${bg.acad})`:(x[0]==="kit"?`background:#fff url(${bg.kit}) center 12%/78% auto no-repeat`:`background-image:linear-gradient(180deg,rgba(16,35,58,.15),rgba(16,35,58,.9) 70%),url(${bg[x[0]]})`)}" aria-label="${x[2]}"><span class="tag ${x[0]==="medica"||x[0]==="kit"?"r":""}">${x[1]}</span><h3>${x[2]}</h3><p>${x[3]}</p><span class="go">${x[4]}</span></a>`).join("");
   document.getElementById("dots").innerHTML=d.sl.map((x,i)=>`<button type="button" aria-label="${i+1}" data-sl="${i}"></button>`).join("");
   document.getElementById("nlist").innerHTML=d.news.map(n=>`<a class="nitem" href="${n[3]}"><time>${n[0]}</time><div><b>${n[1]}</b><span>${n[2]}</span></div></a>`).join("");
@@ -941,7 +947,7 @@ const AD=document.getElementById("ad"),LOG=document.getElementById("adLog");let 
 (async()=>{try{if(window.claude&&claude.use)sampleFn=await claude.use("sample")}catch(e){sampleFn=null}})();
 const FACTS=`STR Biyoteknolojileri (STR Biotechnologies), Çorum, Türkiye. Regenerative medicine manufacturer with own cleanroom (ISO 5/ISO 7, 250 m²), CNC and plastic injection. MDR CE, ISO 13485:2016, GMP. Exports to 60+ countries, 25+ OEM/private label projects, 15+ products, 15+ years, 10M+ clinical uses.
 Solution areas: Regenerative Therapeutics (PRP, PRF, CGF, cytokine, polynucleotide); Major Ozone Therapy (STR O3zone ozone bottle); Regenerative Orthopedics (PRP, CGF, SVF, bone marrow/BMAC); Urology & Gynecology; Regenerative Aesthetics (PRP, exosome/ExoPrime, polynucleotide); Orthopedic implants (new).
-Brands at stand: Unique PRP (platelet-rich plasma preparation system), ExoPrime (autologous plasma processing), HighCell GrowthCell CGF, STR O3zone, BMAC/SVF kits.
+Brands at stand: Unique PRP (platelet-rich plasma preparation system), ExoPrime (autologous plasma processing), HighCell (PRP tube: superior separation, easy buffy coat collection, high platelet concentration), GrowthCell (platelet activation tube), STR O3zone, BMAC/SVF kits.
 Services: OEM, private label, sterile packaging, bulk supply, export support, registration documents.
 MEDICA 2026 Düsseldorf, 16-19 Nov 2026, Hall 1 Stand F38.
 Contact: Export +90 530 122 75 77 (WhatsApp), sales@strmedical.com; Sales +90 532 600 98 34, info@strmedical.com; Factory +90 364 234 44 14; Mon-Fri 08:00-18:00; Pınarçay OSB 20. Cadde No:2/1, Çorum.
@@ -1054,10 +1060,10 @@ document.getElementById("oemCta").addEventListener("click",e=>{e.preventDefault(
 
 (()=>{const V=document.querySelector(".hero-video"),L=[...document.querySelectorAll(".hero-slides i")];
   if(matchMedia("(prefers-reduced-motion: reduce)").matches){if(V){V.pause();V.style.display="none"}return}
-  const seq=[];L.forEach(el=>{seq.push(V);seq.push(el)});let k=0,cur=null;
-  const hideCur=()=>{if(!cur)return;if(cur===V){V.classList.remove("on");setTimeout(()=>V.pause(),1200)}else cur.classList.remove("on");cur=null};
-  const showNext=()=>{const el=seq[k%seq.length];k++;cur=el;if(el===V){try{V.currentTime=0;V.play()}catch(e){}V.classList.add("on")}else el.classList.add("on")};
-  const loop=()=>{showNext();setTimeout(()=>{hideCur();setTimeout(loop,4500)},cur===V?6500:4500)};
+  const hc=L.find(x=>x.classList.contains("clean"));const rest=L.filter(x=>x!==hc);const order=hc?[hc,...rest]:rest;const seq=[];order.forEach(el=>{seq.push(V);seq.push(el)});let k=0,cur=null;
+  const hideCur=()=>{if(!cur)return;if(cur===V){V.classList.remove("on");setTimeout(()=>V.pause(),1200)}else{cur.classList.remove("on");document.querySelector(".hero").classList.remove("clean")}cur=null};
+  const H=document.querySelector(".hero");const showNext=()=>{const el=seq[k%seq.length];k++;cur=el;if(el===V){try{V.currentTime=0;V.play()}catch(e){}V.classList.add("on")}else{el.classList.add("on");if(el.classList.contains("clean"))H.classList.add("clean")}};
+  const loop=()=>{showNext();const dur=cur===V?6500:(cur.classList.contains('clean')?6000:4500);setTimeout(()=>{hideCur();setTimeout(loop,4500)},dur)};
   if(V){V.pause();V.classList.remove("on")}setTimeout(loop,4000);})();
 let spSel=0,pkSel=0;
 function updStarter(){const d=T[lang];
@@ -1087,7 +1093,7 @@ document.addEventListener("click",e=>{
 const PD=document.getElementById("pd");
 function openB(i){const d=T[lang],p=PRODS[i],c=d.cats[p.c];
   document.getElementById("pdImg").src=p.img;document.getElementById("pdImg").classList.add("box");document.getElementById("pdSub").textContent=c[0];document.getElementById("pdT").textContent=p.n;
-  document.getElementById("pdD").textContent=p.d[lang];document.getElementById("pdF").innerHTML=d.feat[p.c].map(f=>`<li>${f}</li>`).join("");PD.dataset.i=p.c;PD.showModal();}
+  document.getElementById("pdD").textContent=p.d[lang];document.getElementById("pdF").innerHTML=(p.f?p.f[lang]:d.feat[p.c]).map(f=>`<li>${f}</li>`).join("");document.getElementById("pdImg").classList.toggle("wide",!!p.wide);PD.dataset.i=p.c;PD.showModal();}
 function openP(i){document.getElementById("pdImg").classList.remove("box");const d=T[lang],c=d.cats[i];
   document.getElementById("pdImg").src=IMG[i];document.getElementById("pdSub").textContent=c[1];document.getElementById("pdT").textContent=c[0];
   document.getElementById("pdD").textContent=c[2];document.getElementById("pdF").innerHTML=d.feat[i].map(f=>`<li>${f}</li>`).join("");
