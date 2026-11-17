@@ -1304,10 +1304,18 @@ function parseCard(raw){
   const coRe=/\b(gmbh|ag|ltd|llc|inc|a\.?ş\.?|aş|san\.?|tic\.?|limited|corp|kg|s\.?r\.?l\.?|b\.?v\.?|klinik|kliniği|clinic|clinique|hospital|hastane(si)?|praxis|medical|medikal|pharma|biotech|biyotek\w*|group|grup|holding|cent(er|re)|merkezi?|health|sağlık|labs?|laborator\w*|technolog\w*|teknoloji\w*|solutions|systems)\b/i;
   const tiRe=/\b(dr|prof|md|phd|uzm|op|doç|manager|müdür\w*|director|direkt\w*|ceo|cto|coo|cfo|owner|founder|sahibi|kurucu\w*|sales|satış|export|ihracat|specialist|uzman\w*|consultant|danışman|head|lead|engineer|mühendis\w*|arzt|ärztin|geschäftsführer\w*|leiter\w*|vertrieb\w*|chief|president|partner|representative|temsilci\w*|surgeon|cerrah\w*|dermatolog\w*|ortoped\w*|physician|hekim\w*|nurse|hemşire|assistant|asistan|coordinator|koordinatör\w*|officer|executive|business|development)\b/i;
   const cand=L.filter(l=>!l.includes("@")&&(l.replace(/\D/g,"").length<4)&&!webRe.test(l)&&/[A-Za-zÇĞİÖŞÜçğıöşüÄäß]/.test(l)&&!/^(tel|fax|phone|telefon|adres|address|e-?mail|web)\b/i.test(l));
-  const PRE=/^(prof\.?|doç\.?|dr\.?|op\.?|uzm\.?|med\.?|dent\.?|dipl\.?-?|ing\.?|mr\.?|mrs\.?|ms\.?)\s+/i;
-  const strip=l=>{let x=l,o;do{o=x;x=x.replace(PRE,"")}while(x!==o);return x};
-  const isName=l=>{const b=strip(l),w=b.split(" ");return w.length>=2&&w.length<=4&&w.every(x=>/^[A-ZÇĞİÖŞÜÄ][\p{L}'.-]*$/u.test(x))&&!coRe.test(l)&&!tiRe.test(b)&&!/\//.test(l)};
-  let name=cand.find(isName)||"";if(name&&name===name.toUpperCase())name=name.toLowerCase().replace(/(^|\s)\p{L}/gu,c=>c.toUpperCase());
+  const PRE=/^(prof\.?|doç\.?|dr\.?|op\.?|uzm\.?|med\.?|dent\.?|dipl\.?-?|ing\.?|mr\.?|mrs\.?|ms\.?)$/i;
+  const STOP=/^(ve|and|und|et|toptan|perakende|ankara|istanbul|izmir|bursa|antalya|türkiye|turkey|germany|deutschland|düsseldorf|berlin|tel|fax|gsm|mobil|mobile|phone|telefon|adres|address|cad|cd|sok|sk|mah|no|www|email|san|sit|ticaret|şti|ltd|plaza|street|road|str|the|of|für|für|sales|satış|export|import)$/i;
+  let best=null;
+  L.forEach(line=>{const tk=line.split(/\s+/);const hasPh=/\d{3}[\s.-]?\d{2,}/.test(line);
+    for(let a=0;a<tk.length;a++)for(let n=2;n<=3&&a+n<=tk.length;n++){const w=tk.slice(a,a+n);
+      const typ=w.map(x=>/^\p{Lu}\p{Ll}{2,}$/u.test(x)?"P":/^\p{Lu}[\p{Ll}]?[\p{Lu}]+$/u.test(x)&&x.length>=2&&x===x.toUpperCase()?"C":/^\p{Lu}\p{Ll}*-\p{Lu}\p{Ll}+$/u.test(x)?"P":null);
+      if(typ.some(t=>!t))continue;const txt=w.join(" ");
+      let sc=typ.reduce((q,t)=>q+(t==="P"?2:1),0)+(typ.includes("P")?2:0)+(n===tk.length?1:0)+(hasPh?1:0);
+      if(w.some(x=>STOP.test(x))||coRe.test(txt)||tiRe.test(txt))sc-=10;
+      if(typ.every(t=>t==="C")&&w.some(x=>x.length<3))sc-=2;
+      if(!best||sc>best.sc){let pre=[];for(let b=a-1;b>=0&&PRE.test(tk[b]);b--)pre.unshift(tk[b]);best={sc,txt:[...pre,txt].join(" ")}}}});
+  let name=best&&best.sc>=3?best.txt:"";if(name&&name===name.toUpperCase())name=name.toLowerCase().replace(/(^|\s)\p{L}/gu,c=>c.toUpperCase());
   const title=cand.find(l=>l!==name&&tiRe.test(l)&&!coRe.test(l))||"";
   let company=cand.find(l=>l!==name&&l!==title&&coRe.test(l))||"";
   if(!company&&em){const dm=em.split("@")[1].split(".")[0];if(!/^(gmail|hotmail|yahoo|outlook|icloud|yandex|gmx|web|mail|live|msn|t-online|aol|proton)$/i.test(dm))company=dm.charAt(0).toUpperCase()+dm.slice(1)}
