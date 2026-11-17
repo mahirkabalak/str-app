@@ -442,7 +442,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .step-nav .btn{margin:0;padding:11px}
 .step-nav .btn:disabled{opacity:.4}
 #oemCta{margin-top:12px;background:linear-gradient(180deg,#2A4A6C,#1B3350)}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0;transition:opacity 1.2s ease}.hero-video.on{opacity:1}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,35,58,.30) 0%,rgba(16,35,58,.70) 45%,rgba(16,35,58,.95) 100%)}
 @media (prefers-reduced-motion:reduce){.hero-video{display:none}}
 .hero-slides{position:absolute;inset:0;z-index:-2;pointer-events:none}
@@ -466,7 +466,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
   <main>
     <!-- HOME -->
     <section class="view" id="v-home">
-      <div class="hero"><video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="media/hero_poster.jpg" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"></video><div class="hero-slides" aria-hidden="true"><i style="background-image:url(media/gc1.jpg);--px:52%"></i><i style="background-image:url(media/gc2.jpg);--px:68%"></i><i style="background-image:url(media/gc3.jpg);--px:62%"></i><i style="background-image:url(media/gc4.jpg);--px:58%"></i></div>
+      <div class="hero"><video class="hero-video" muted loop playsinline preload="metadata" poster="media/hero_poster.jpg" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"></video><div class="hero-slides" aria-hidden="true"><i style="background-image:url(media/gc1.jpg);--px:52%"></i><i style="background-image:url(media/gc2.jpg);--px:68%"></i><i style="background-image:url(media/gc3.jpg);--px:62%"></i><i style="background-image:url(media/gc4.jpg);--px:58%"></i></div>
         <div>
           <h1 data-i="heroT"></h1>
           <p data-i="heroP"></p>
@@ -1052,9 +1052,13 @@ document.getElementById("stNext").addEventListener("click",()=>goSt(ofI+1));
 (()=>{let x0=null;const el=document.getElementById("oemSteps");el.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});el.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)goSt(ofI+(dx<0?1:-1));x0=null});})();
 document.getElementById("oemCta").addEventListener("click",e=>{e.preventDefault();document.getElementById("f").scrollIntoView({behavior:"smooth"})});
 
-(()=>{const L=[...document.querySelectorAll(".hero-slides i")];if(!L.length||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-  let k=0;const show=()=>{const el=L[k%L.length];k++;el.classList.add("on");setTimeout(()=>el.classList.remove("on"),4200)};
-  setTimeout(()=>{show();setInterval(show,10000)},6000);})();
+(()=>{const V=document.querySelector(".hero-video"),L=[...document.querySelectorAll(".hero-slides i")];
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){if(V){V.pause();V.style.display="none"}return}
+  const seq=[];L.forEach(el=>{seq.push(V);seq.push(el)});let k=0,cur=null;
+  const hideCur=()=>{if(!cur)return;if(cur===V){V.classList.remove("on");setTimeout(()=>V.pause(),1200)}else cur.classList.remove("on");cur=null};
+  const showNext=()=>{const el=seq[k%seq.length];k++;cur=el;if(el===V){try{V.currentTime=0;V.play()}catch(e){}V.classList.add("on")}else el.classList.add("on")};
+  const loop=()=>{showNext();setTimeout(()=>{hideCur();setTimeout(loop,4500)},cur===V?6500:4500)};
+  if(V){V.pause();V.classList.remove("on")}setTimeout(loop,4000);})();
 let spSel=0,pkSel=0;
 function updStarter(){const d=T[lang];
   document.querySelectorAll("#pkt button").forEach(b=>b.setAttribute("aria-checked",+b.dataset.k===pkSel));
