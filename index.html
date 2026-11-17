@@ -417,6 +417,8 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .pkt button{flex:1 1 100%;text-align:left;display:flex;flex-direction:column;gap:1px;padding:10px 13px}
 .pkt button b{font-size:15px}
 .pkt button small{font-size:12px;opacity:.8;font-weight:500}
+.starter{overflow-anchor:none}.sp-box{min-height:236px}
+.chips button{-webkit-tap-highlight-color:transparent}
 </style>
 </head>
 <body>
@@ -989,8 +991,14 @@ function renderAes(){const d=T[lang];const sec=document.getElementById("aestheti
   document.getElementById("aeUses").innerHTML=d.uses.map(u=>`<div><i>${u[0]}</i><b>${u[1]}</b><span>${u[2]}</span></div>`).join("");
   const pick=["ExoPrime","Renewa Capilla","Strakin Multicap","S&M PRF+","GrowthCell","Labfuge"];
   document.getElementById("aeProds").innerHTML=pick.map(n=>{const i=PRODS.findIndex(p=>p.n===n);return i<0?"":`<button type="button" data-b="${i}"><img loading="lazy" src="${PRODS[i].img}" alt=""><span>${n}</span></button>`}).join("");}
-document.getElementById("aeBtn").addEventListener("click",()=>{spSel=0;renderExtra();document.getElementById("spBtn").click();});
+document.getElementById("aeBtn").addEventListener("click",()=>{spSel=0;updStarter();document.getElementById("spBtn").click();});
 let spSel=0,pkSel=0;
+function updStarter(){const d=T[lang];
+  document.querySelectorAll("#pkt button").forEach(b=>b.setAttribute("aria-checked",+b.dataset.k===pkSel));
+  document.querySelectorAll("#chips button").forEach(b=>b.setAttribute("aria-checked",+b.dataset.s===spSel));
+  const pk=d.sp[spSel];document.getElementById("spBox").innerHTML=`<ul>${pk[1].map((it,i)=>`<li><i>${i+1}</i><div><b>${it[0]}</b><span>${it[1]}</span></div></li>`).join("")}</ul><p class="sp-note">${d.spNote}</p>`;
+  const dn=document.getElementById("spDone");if(dn.classList.contains("on")){dn.classList.remove("on");dn.innerHTML=""}}
+
 function renderExtra(){
   const d=T[lang];
   document.getElementById("rail").innerHTML=PRODS.map((p,i)=>`<button class="pcard box" type="button" data-b="${i}"><img src="${p.img}" alt="${p.n}"><span>${p.n}</span><small>${p.d[lang]}</small></button>`).join("");
@@ -1006,8 +1014,8 @@ function renderExtra(){
 document.addEventListener("click",e=>{
   const bx=e.target.closest("[data-b]"); if(bx){openB(+bx.dataset.b);return}
   const pc=e.target.closest(".pcard"); if(pc){openP(+pc.dataset.p);return}
-  const ch=e.target.closest("#chips button"); if(ch){spSel=+ch.dataset.s;renderExtra();return}
-  const pk=e.target.closest("#pkt button"); if(pk){pkSel=+pk.dataset.k;renderExtra();return}
+  const ch=e.target.closest("#chips button"); if(ch){spSel=+ch.dataset.s;updStarter();return}
+  const pk=e.target.closest("#pkt button"); if(pk){pkSel=+pk.dataset.k;updStarter();return}
 });
 const PD=document.getElementById("pd");
 function openB(i){const d=T[lang],p=PRODS[i],c=d.cats[p.c];
