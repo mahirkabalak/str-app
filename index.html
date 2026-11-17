@@ -442,6 +442,9 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .step-nav .btn{margin:0;padding:11px}
 .step-nav .btn:disabled{opacity:.4}
 #oemCta{margin-top:12px;background:linear-gradient(180deg,#2A4A6C,#1B3350)}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,35,58,.30) 0%,rgba(16,35,58,.70) 45%,rgba(16,35,58,.95) 100%)}
+@media (prefers-reduced-motion:reduce){.hero-video{display:none}}
 </style>
 </head>
 <body>
@@ -459,7 +462,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
   <main>
     <!-- HOME -->
     <section class="view" id="v-home">
-      <div class="hero">
+      <div class="hero"><video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="media/hero_poster.jpg" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"></video>
         <div>
           <h1 data-i="heroT"></h1>
           <p data-i="heroP"></p>
@@ -814,7 +817,7 @@ t1:"Start",t2:"Produkte",t3:"OEM",t4:"Akademie",t5:"Kontakt",qrT:"App aufs Handy
 };
 
 const IMG=["img/09bdebd1f8.jpg", "img/1ef1927c85.jpg", "img/138376d81e.jpg", "img/837304808c.jpg", "img/c1179adb52.jpg", "img/906539792e.jpg"];
-const PRODS=[{"n": "Strakin Multicap", "img": "img/46c80dcfa4.jpg", "c": 0, "d": {"tr": "Tüm bileşenleri tek pakette, komple PRP kiti.", "en": "Complete platelet-rich plasma kit, all components in one pack.", "de": "Komplettes PRP-Kit, alle Komponenten in einer Packung."}}, {"n": "S&M Monocap", "img": "img/92297e029f.jpg", "c": 0, "d": {"tr": "Steril PRP tüpü.", "en": "Sterile PRP tube.", "de": "Steriles PRP-Röhrchen."}}, {"n": "GrowthCell", "img": "img/4848f0ee91.jpg", "c": 0, "d": {"tr": "Trombosit aktivasyon sistemi (CGF).", "en": "Platelet activation system (CGF).", "de": "Thrombozyten-Aktivierungssystem (CGF)."}}, {"n": "ExoPrime", "img": "img/90d99c8a0d.jpg", "c": 4, "d": {"tr": "Otolog eksozom konsantresi · doku, saç derisi, kas-iskelet.", "en": "Autologous exosome concentrate · tissue, scalp, MSK.", "de": "Autologes Exosomkonzentrat · Gewebe, Kopfhaut, MSK."}}, {"n": "Renewa Capilla", "img": "img/3f691ac34f.jpg", "c": 4, "d": {"tr": "Kök hücre bazlı saç restorasyon kiti.", "en": "Stem cell based hair restoration kit.", "de": "Stammzellbasiertes Haarrestaurations-Kit."}}, {"n": "Stemmex", "img": "img/6b27a09d84.jpg", "c": 2, "d": {"tr": "Kemik iliği kök hücre kiti.", "en": "Bone marrow stem cell kit.", "de": "Knochenmark-Stammzell-Kit."}}, {"n": "S&M PRF+", "img": "img/4a92c36fba.jpg", "c": 0, "d": {"tr": "PRF hazırlama kiti.", "en": "PRF preparation kit.", "de": "PRF-Aufbereitungskit."}}, {"n": "STR O3zone", "img": "img/a480df4d13.jpg", "c": 1, "d": {"tr": "Majör ozon terapisi için ozon şişesi.", "en": "Ozone bottle for major ozone therapy.", "de": "Ozonflasche für die große Ozontherapie."}}, {"n": "Labfuge", "img": "img/b940bec91a.jpg", "c": 0, "d": {"tr": "PRP, PRF, CGF ve SVF için santrifüj.", "en": "Centrifuge for PRP, PRF, CGF and SVF.", "de": "Zentrifuge für PRP, PRF, CGF und SVF."}}];
+const PRODS=[{"n": "Strakin Multicap", "img": "img/46c80dcfa4.jpg", "c": 0, "d": {"tr": "Tüm bileşenleri tek pakette, komple PRP kiti.", "en": "Complete platelet-rich plasma kit, all components in one pack.", "de": "Komplettes PRP-Kit, alle Komponenten in einer Packung."}}, {"n": "S&M Monocap", "img": "img/92297e029f.jpg", "c": 0, "d": {"tr": "Steril PRP tüpü.", "en": "Sterile PRP tube.", "de": "Steriles PRP-Röhrchen."}}, {"n": "GrowthCell", "img": "img/growthcell_hero.jpg", "c": 0, "d": {"tr": "Trombosit aktivasyon sistemi (CGF).", "en": "Platelet activation system (CGF).", "de": "Thrombozyten-Aktivierungssystem (CGF)."}}, {"n": "ExoPrime", "img": "img/90d99c8a0d.jpg", "c": 4, "d": {"tr": "Otolog eksozom konsantresi · doku, saç derisi, kas-iskelet.", "en": "Autologous exosome concentrate · tissue, scalp, MSK.", "de": "Autologes Exosomkonzentrat · Gewebe, Kopfhaut, MSK."}}, {"n": "Renewa Capilla", "img": "img/3f691ac34f.jpg", "c": 4, "d": {"tr": "Kök hücre bazlı saç restorasyon kiti.", "en": "Stem cell based hair restoration kit.", "de": "Stammzellbasiertes Haarrestaurations-Kit."}}, {"n": "Stemmex", "img": "img/6b27a09d84.jpg", "c": 2, "d": {"tr": "Kemik iliği kök hücre kiti.", "en": "Bone marrow stem cell kit.", "de": "Knochenmark-Stammzell-Kit."}}, {"n": "S&M PRF+", "img": "img/4a92c36fba.jpg", "c": 0, "d": {"tr": "PRF hazırlama kiti.", "en": "PRF preparation kit.", "de": "PRF-Aufbereitungskit."}}, {"n": "STR O3zone", "img": "img/a480df4d13.jpg", "c": 1, "d": {"tr": "Majör ozon terapisi için ozon şişesi.", "en": "Ozone bottle for major ozone therapy.", "de": "Ozonflasche für die große Ozontherapie."}}, {"n": "Labfuge", "img": "img/b940bec91a.jpg", "c": 0, "d": {"tr": "PRP, PRF, CGF ve SVF için santrifüj.", "en": "Centrifuge for PRP, PRF, CGF and SVF.", "de": "Zentrifuge für PRP, PRF, CGF und SVF."}}];
 const X={
 tr:{railT:"Ürünlerimiz",all:"Tümü",close:"Kapat",pdSp:"Paket öner",o5:"Paket talebi",
 feat:[["PRP, PRF ve CGF hazırlama sistemleri","Sitokin ve polinükleotid çözümleri","Steril ambalaj, MDR CE uyumlu üretim","OEM / Private Label ile kendi markanızla"],
