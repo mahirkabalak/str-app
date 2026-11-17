@@ -471,6 +471,7 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
 .scprev.busy .cropbox i{display:none}
 .rotbtn{position:absolute;right:20px;top:20px;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.3)}.rotbtn svg{width:24px;height:24px}.scprev.busy .rotbtn{display:none}
 .cropbox i{width:48px!important;height:48px!important}.cropbox i[data-h=nw]{left:-25px!important;top:-25px!important}.cropbox i[data-h=ne]{right:-25px!important;top:-25px!important}.cropbox i[data-h=sw]{left:-25px!important;bottom:-25px!important}.cropbox i[data-h=se]{right:-25px!important;bottom:-25px!important}.cropbox i::after{inset:13px!important}
+.scprev{padding-bottom:84px}.gobtn{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:auto;min-width:58%;padding:13px 28px;font-size:17px;z-index:3}.scprev.busy .gobtn{display:none}
 .croptools{display:flex;flex-direction:column;gap:12px}
 .cropbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}.cropbtns .btn{font-size:14.5px;padding:11px}
 .scprev .bar{position:absolute;left:0;bottom:0;height:4px;background:var(--plasma);width:0;transition:width .3s}
@@ -770,8 +771,8 @@ dialog#artd::backdrop{background:rgba(16,35,58,.6)}
       <div class="scan">
         <label class="btn gold scbtn"><input type="file" accept="image/*" capture="environment" id="scIn" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M6 9.5h5M6 12.5h7M6 15.5h4"/><circle cx="17" cy="11" r="2"/><path d="M14.5 16a2.7 2.7 0 0 1 5 0"/></svg><span data-i="scBtn"></span></label>
         <label class="btn scbtn" style="font-size:14.5px;padding:12px"><input type="file" accept="image/*" id="scIn2" hidden><span data-i="scGal"></span></label>
-        <div class="scprev" id="scPrev" hidden><div class="cropwrap" id="scWrap"><img id="scImg" alt=""><div class="cropbox" id="scBox"><i data-h="nw"></i><i data-h="ne"></i><i data-h="sw"></i><i data-h="se"></i></div></div><button type="button" class="rotbtn" id="scRot" aria-label="rotate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg></button><i class="bar" id="scBar"></i></div>
-        <div class="croptools" id="scTools" hidden><p class="note" data-i="scCropHint"></p><button class="btn gold" type="button" id="scGo" data-i="scGo"></button></div>
+        <div class="scprev" id="scPrev" hidden><div class="cropwrap" id="scWrap"><img id="scImg" alt=""><div class="cropbox" id="scBox"><i data-h="nw"></i><i data-h="ne"></i><i data-h="sw"></i><i data-h="se"></i></div></div><button type="button" class="rotbtn" id="scRot" aria-label="rotate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg></button><button class="btn gold gobtn" type="button" id="scGo" data-i="scGo" hidden></button><i class="bar" id="scBar"></i></div>
+        <div class="croptools" id="scTools" hidden><p class="note" data-i="scCropHint"></p></div>
         <p class="note" id="scSt" aria-live="polite"></p>
       </div>
       <form id="scF" hidden novalidate>
@@ -1358,7 +1359,7 @@ function scCrop(){const sx=Math.round(scB.x*scSrc.width),sy=Math.round(scB.y*scS
   const id=x.getImageData(0,0,c.width,c.height),p=id.data;for(let i=0;i<p.length;i+=4){let g=.299*p[i]+.587*p[i+1]+.114*p[i+2];g=Math.max(0,Math.min(255,(g-128)*1.35+128));p[i]=p[i+1]=p[i+2]=g}x.putImageData(id,0,0);return c}
 async function scHandle(file){if(!file)return;document.getElementById("scOut").classList.remove("on");document.querySelectorAll("#scOut .btn").forEach(b=>b.classList.remove("done1"));const d=T[lang],st=document.getElementById("scSt");scEdit=null;
   try{scSrc=await scPrep(file)}catch(e){st.textContent=d.stFail;scFill({});return}
-  document.getElementById("scF").hidden=true;document.getElementById("scPrev").hidden=false;document.getElementById("scTools").hidden=false;document.getElementById("scBar").style.width="0";
+  document.getElementById("scF").hidden=true;document.getElementById("scPrev").hidden=false;document.getElementById("scTools").hidden=false;document.getElementById("scGo").hidden=false;document.getElementById("scBar").style.width="0";
   scShow();st.textContent="";scLoad().catch(()=>{});document.getElementById("scPrev").scrollIntoView({behavior:"smooth",block:"start"})}
 async function scReadCrop(){const d=T[lang],st=document.getElementById("scSt"),pv=document.getElementById("scPrev"),bar=document.getElementById("scBar");if(!scSrc)return;
   document.getElementById("scTools").hidden=true;pv.classList.add("busy");bar.style.width="8%";st.textContent=d.stLoad;
@@ -1375,7 +1376,7 @@ document.getElementById("scF").addEventListener("submit",e=>{e.preventDefault();
   const a=scGet();let c;if(scEdit){c=a.find(x=>x.id===scEdit);Object.assign(c,o)}else{c={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),t:Date.now(),...o};a.push(c)}
   if(isTeam()){c.team=true;scPut(a);const tx=encodeURIComponent(scText(c));SC_TO.forEach((r,i)=>{const w=document.getElementById("scWa"+(i+1));w.href="https://wa.me/"+r.n+"?text="+tx;w.textContent=d.scTo+" "+r.name;w.dataset.id=c.id});document.getElementById("scOut").classList.add("on");const ms=document.getElementById("scMailSt");ms.textContent=d.scMailing;scMail(c).then(ok=>{const b=scGet(),y=b.find(z=>z.id===c.id);if(y&&ok){y.mailed=true;scPut(b)}ms.textContent=ok?d.scMailOk:d.scMailQ;scList();if(ok)scFlush()})}
   else{scPut(a);const v=scVcf(c);const sv=document.getElementById("vdSave");scDownload((c.name||"contact").replace(/[^\p{L}\p{N}]+/gu,"_")+".vcf",v,"text/vcard;charset=utf-8")}
-  scEdit=null;e.target.reset();e.target.hidden=true;document.getElementById("scPrev").hidden=true;document.getElementById("scTools").hidden=true;document.getElementById("scSt").textContent=d.scSaved;scList();
+  scEdit=null;e.target.reset();e.target.hidden=true;document.getElementById("scPrev").hidden=true;document.getElementById("scTools").hidden=true;document.getElementById("scGo").hidden=true;document.getElementById("scSt").textContent=d.scSaved;scList();
   (isTeam()?document.getElementById("scOut"):document.querySelector(".sclist")).scrollIntoView({behavior:"smooth",block:"start"})});
 document.getElementById("scMine").addEventListener("click",()=>{const o=scRead(),R=document.getElementById("rf"),d=T[lang];
   R.name.value=o.name;R.company.value=o.company;R.country.value=o.country;R.tel.value=o.tel;R.email.value=o.email;
